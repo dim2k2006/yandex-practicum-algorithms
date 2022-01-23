@@ -20,3 +20,30 @@ const countMovingAverage = (timeseries, K) => {
 };
 
 module.exports = countMovingAverage;
+
+// Yandex context required code
+// const _readline = require('readline');
+//
+// const _reader = _readline.createInterface({
+//   input: process.stdin,
+// });
+//
+// const _inputLines = [];
+//
+// // Установим callback на считывание строки - так мы получим
+// // все строки из ввода в массиве _inputLines.
+// _reader.on('line', (line) => {
+//   _inputLines.push(line);
+// });
+//
+// const solve = () => {
+//   const timeseries = _inputLines[1].split(' ').map(Number);
+//   const K = Number(_inputLines[2]);
+//
+//   const result = countMovingAverage(timeseries, K).join(' ');
+//
+//   console.log(result);
+// };
+//
+// // Когда ввод закончится, будет вызвана функция solve.
+// process.stdin.on('end', solve);
