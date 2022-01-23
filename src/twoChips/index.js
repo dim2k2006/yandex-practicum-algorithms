@@ -11,3 +11,35 @@ const getChips = (chipsScores, K) => {
 };
 
 module.exports = getChips;
+
+// Yandex context required code
+// const _readline = require('readline');
+//
+// const _reader = _readline.createInterface({
+//   input: process.stdin,
+// });
+//
+// const _inputLines = [];
+//
+// _reader.on('line', (line) => {
+//   _inputLines.push(line);
+// });
+//
+// const solve = () => {
+//   const chipsScores = _inputLines[1].split(' ').map(Number);
+//   const K = Number(_inputLines[2]);
+//
+//   const chips = getChips(chipsScores, K);
+//
+//   if (!chips) {
+//     console.log('None');
+//
+//     return;
+//   }
+//
+//   const result = getChips(chipsScores, K).join(' ');
+//
+//   console.log(result);
+// };
+//
+// process.stdin.on('end', solve);
