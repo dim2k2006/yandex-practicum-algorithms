@@ -1,13 +1,12 @@
 const getChips2 = (chipsScores, K) => {
-  const sortedChips = [...chipsScores].sort();
+  const sortedChips = [...chipsScores].sort((a, b) => a - b);
 
-  const iter = (leftIndex, rightIndex, list) => {
-    if (leftIndex >= rightIndex) {
-      return null;
-    }
+  let left = 0;
+  let right = sortedChips.length - 1;
 
-    const firstNumber = list[leftIndex];
-    const secondNumber = list[rightIndex];
+  while (left < right) {
+    const firstNumber = sortedChips[left];
+    const secondNumber = sortedChips[right];
     const current_sum = firstNumber + secondNumber;
 
     if (current_sum === K) {
@@ -15,13 +14,15 @@ const getChips2 = (chipsScores, K) => {
     }
 
     if (current_sum < K) {
-      return iter(leftIndex + 1, rightIndex, list);
+      left = left + 1;
+
+      continue;
     }
 
-    return iter(leftIndex, rightIndex - 1, list);
-  };
+    right = right - 1;
+  }
 
-  return iter(0, sortedChips.length - 1, sortedChips);
+  return [];
 };
 
 module.exports = getChips2;
@@ -45,7 +46,7 @@ const solve = () => {
 
   const chips = getChips2(chipsScores, K);
 
-  if (!chips) {
+  if (chips.length === 0) {
     console.log('None');
 
     return;

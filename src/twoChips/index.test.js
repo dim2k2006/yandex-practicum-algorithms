@@ -9,3 +9,11 @@ test('Finds correct chips.', () => {
   expect(getChips(chipsScores, K)).toEqual(expected);
   expect(getChips2(chipsScores, K)).toEqual(expected);
 });
+
+test('Finds correct chips 2.', () => {
+  const chipsScores = [-91, -56, -44, -32, -10, 33, 55, 58, 87, 94];
+  const K = -88;
+  const expected = [-56, -32];
+
+  expect(getChips2(chipsScores, K)).toEqual(expected);
+});
