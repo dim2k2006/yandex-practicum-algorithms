@@ -1,5 +1,6 @@
 const getChips = require('.');
 const getChips2 = require('./index2');
+const getChips3 = require('./index3');
 
 test('Finds correct chips.', () => {
   const chipsScores = [-1, -1, -9, -7, 3, -6];
@@ -8,6 +9,7 @@ test('Finds correct chips.', () => {
 
   expect(getChips(chipsScores, K)).toEqual(expected);
   expect(getChips2(chipsScores, K)).toEqual(expected);
+  expect(getChips3(chipsScores, K)).toEqual(expected);
 });
 
 test('Finds correct chips 2.', () => {
@@ -16,4 +18,5 @@ test('Finds correct chips 2.', () => {
   const expected = [-56, -32];
 
   expect(getChips2(chipsScores, K)).toEqual(expected);
+  expect(getChips3(chipsScores, K)).toEqual(expected);
 });

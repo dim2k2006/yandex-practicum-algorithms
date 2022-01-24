@@ -1,31 +1,21 @@
-const getChips2 = (chipsScores, K) => {
-  const sortedChips = [...chipsScores].sort((a, b) => a - b);
+const getChips3 = (chipsScores, K) => {
+  const previousValues = new Set();
 
-  let left = 0;
-  let right = sortedChips.length - 1;
+  for (let i = 0; i < chipsScores.length; i = i + 1) {
+    const value = chipsScores[i];
+    const diff = K - value;
 
-  while (left < right) {
-    const firstNumber = sortedChips[left];
-    const secondNumber = sortedChips[right];
-    const current_sum = firstNumber + secondNumber;
-
-    if (current_sum === K) {
-      return [firstNumber, secondNumber];
+    if (previousValues.has(diff)) {
+      return [diff, value];
     }
 
-    if (current_sum < K) {
-      left = left + 1;
-
-      continue;
-    }
-
-    right = right - 1;
+    previousValues.add(value);
   }
 
   return [];
 };
 
-module.exports = getChips2;
+module.exports = getChips3;
 
 // Yandex context required code
 // const _readline = require('readline');
@@ -44,7 +34,7 @@ module.exports = getChips2;
 //   const chipsScores = _inputLines[1].split(' ').map(Number);
 //   const K = Number(_inputLines[2]);
 //
-//   const chips = getChips2(chipsScores, K);
+//   const chips = getChips3(chipsScores, K);
 //
 //   if (chips.length === 0) {
 //     console.log('None');
