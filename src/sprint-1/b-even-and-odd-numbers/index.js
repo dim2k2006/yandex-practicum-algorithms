@@ -1,7 +1,7 @@
 const isEven = (number) => number % 2 === 0;
 const isOdd = (number) => number % 2 !== 0;
 
-const solve = (...numbers) => {
+const main = (...numbers) => {
   const firstNumber = numbers[0];
   const checker = isEven(firstNumber) ? isEven : isOdd;
 
@@ -10,7 +10,7 @@ const solve = (...numbers) => {
   return result;
 };
 
-module.exports = solve;
+module.exports = main;
 
 // Yandex context required code
 // const _readline = require('readline');
@@ -28,9 +28,11 @@ module.exports = solve;
 // const solve = () => {
 //   const values = _inputLines[0].split(' ').map(Number);
 //
-//   const result = countValue(...values);
+//   const result = main(...values);
 //
-//   console.log(result);
+//   const out = result ? 'WIN' : 'FAIL';
+//
+//   console.log(out);
 // };
 //
 // process.stdin.on('end', solve);
