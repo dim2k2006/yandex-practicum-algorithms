@@ -3,6 +3,14 @@ const isDegreeOfFour = (number) => {
   const multiplier = 4;
   let product = initialNumber * multiplier;
 
+  if (number === 1) {
+    return true;
+  }
+
+  if (number === initialNumber) {
+    return true;
+  }
+
   while (product <= number) {
     if (product === number) return true;
 
@@ -28,12 +36,13 @@ module.exports = isDegreeOfFour;
 // });
 //
 // const solve = () => {
-//   const binaryNumber1 = _inputLines[0];
-//   const binaryNumber2 = _inputLines[1];
+//   const number = Number(_inputLines[0]);
 //
-//   const result = getBinarySum(binaryNumber1, binaryNumber2);
+//   const result = isDegreeOfFour(number);
 //
-//   console.log(result);
+//   const out = result ? 'True' : 'False';
+//
+//   console.log(out);
 // };
 //
 // process.stdin.on('end', solve);
