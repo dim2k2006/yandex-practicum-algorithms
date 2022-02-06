@@ -1,43 +1,39 @@
-const getBinaryNumber = (decimalNumber) => {
-  const iter = (accumulator, number) => {
-    const divisionResult = Math.trunc(number / 2);
-    const divisionRemainder = number % 2;
+const getSum = (number1, number2) => {
+  if (number1 === 0 && number2 === 0) return { sum: 0, storage: 0 };
 
-    const newAccumulator = [...accumulator, divisionRemainder];
+  if (number1 === 1 && number2 === 1) return { sum: 0, storage: 1 };
 
-    if (divisionResult === 0) return newAccumulator;
-
-    return iter(newAccumulator, divisionResult);
-  };
-
-  const result = iter([], decimalNumber);
-
-  const newResult = result.reverse().join('');
-
-  return Number(newResult);
-};
-
-const getDecimalNumber = (binaryNumber) => {
-  const x = 2;
-  const list = String(binaryNumber).split('');
-  const decimalNumber = list.reverse().reduce((accumulator, item, index) => {
-    const value = item * Math.pow(x, index);
-
-    const newAccumulator = accumulator + value;
-
-    return newAccumulator;
-  }, 0);
-
-  return decimalNumber;
+  return { sum: 1, storage: 0 };
 };
 
 const getBinarySum = (binaryNumber1, binaryNumber2) => {
-  const decimalNumber1 = getDecimalNumber(binaryNumber1);
-  const decimalNumber2 = getDecimalNumber(binaryNumber2);
-  const sum = decimalNumber1 + decimalNumber2;
-  const result = getBinaryNumber(sum);
+  const numbers1 = String(binaryNumber1).split('').map(Number);
+  const numbers2 = String(binaryNumber2).split('').map(Number);
 
-  return result;
+  const biggestList = numbers1.length > numbers2.length ? numbers1 : numbers2;
+  const smallestList = numbers1.length > numbers2.length ? numbers2 : numbers1;
+
+  const result = [];
+  let prevStorage = 0;
+
+  for (let i = biggestList.length - 1; i >= 0; i = i - 1) {
+    const number1 = biggestList[i];
+    const number2 = smallestList[i];
+
+    const value = getSum(number1, number2);
+
+    const newValue = prevStorage === 1 ? getSum(value.sum, prevStorage) : value;
+
+    result.unshift(newValue.sum);
+
+    prevStorage = value.storage;
+
+    if (i === 0) {
+      result.unshift(prevStorage);
+    }
+  }
+
+  return Number(result.join(''));
 };
 
 module.exports = getBinarySum;
