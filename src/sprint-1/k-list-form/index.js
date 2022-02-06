@@ -22,9 +22,10 @@ module.exports = getListForm;
 // });
 //
 // const solve = () => {
-//   const number = Number(_inputLines[0]);
+//   const list = _inputLines[1].split(' ').map(Number);
+//   const number = Number(_inputLines[2]);
 //
-//   const result = getPrimeFactors(number);
+//   const result = getListForm(list, number);
 //
 //   const out = result.join(' ');
 //
