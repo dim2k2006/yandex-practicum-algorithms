@@ -75,8 +75,6 @@ const getBinarySum = (binaryNumber1, binaryNumber2) => {
     }
   }
 
-  console.log('result', result);
-
   const newResult = clean(result);
 
   return newResult.join('');
