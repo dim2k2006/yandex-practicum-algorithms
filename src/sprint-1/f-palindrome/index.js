@@ -34,11 +34,11 @@ module.exports = isPalindrome;
 // });
 //
 // const solve = () => {
-//   const data = _inputLines[1];
+//   const text = _inputLines[0];
 //
-//   const result = getLongestWord(data);
+//   const result = isPalindrome(text);
 //
-//   const out = `${result[0]}\n${result[1]}`;
+//   const out = result ? 'True' : 'False';
 //
 //   console.log(out);
 // };
