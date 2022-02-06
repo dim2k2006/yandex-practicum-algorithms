@@ -61,7 +61,7 @@ const getBinarySum = (binaryNumber1, binaryNumber2) => {
     }
   }
 
-  return Number(result.join(''));
+  return result.join('').replace(/^0+/, '');
 };
 
 module.exports = getBinarySum;
