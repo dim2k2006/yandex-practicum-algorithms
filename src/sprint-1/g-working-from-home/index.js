@@ -33,13 +33,11 @@ module.exports = getBinaryNumber;
 // });
 //
 // const solve = () => {
-//   const text = _inputLines[0];
+//   const decimalNumber = _inputLines[0];
 //
-//   const result = isPalindrome(text);
+//   const result = getBinaryNumber(decimalNumber);
 //
-//   const out = result ? 'True' : 'False';
-//
-//   console.log(out);
+//   console.log(result);
 // };
 //
 // process.stdin.on('end', solve);
