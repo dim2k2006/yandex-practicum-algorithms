@@ -13,27 +13,25 @@ const getExtraLetter = (string1, string2) => {
 module.exports = getExtraLetter;
 
 // Yandex context required code
-// const _readline = require('readline');
-//
-// const _reader = _readline.createInterface({
-//   input: process.stdin,
-// });
-//
-// const _inputLines = [];
-//
-// _reader.on('line', (line) => {
-//   _inputLines.push(line);
-// });
-//
-// const solve = () => {
-//   const list = _inputLines[1].split(' ').map(Number);
-//   const number = Number(_inputLines[2]);
-//
-//   const result = getListForm(list, number);
-//
-//   const out = result.join(' ');
-//
-//   console.log(out);
-// };
-//
-// process.stdin.on('end', solve);
+const _readline = require('readline');
+
+const _reader = _readline.createInterface({
+  input: process.stdin,
+});
+
+const _inputLines = [];
+
+_reader.on('line', (line) => {
+  _inputLines.push(line);
+});
+
+const solve = () => {
+  const string1 = _inputLines[0];
+  const string2 = _inputLines[1];
+
+  const result = getExtraLetter(string1, string2);
+
+  console.log(result);
+};
+
+process.stdin.on('end', solve);
