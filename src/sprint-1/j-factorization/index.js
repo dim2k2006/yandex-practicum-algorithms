@@ -1,18 +1,32 @@
+// const isPrime = (number) => {
+//   if (number === 1) return false;
+//
+//   let i = 2;
+//
+//   while (i * i <= number) {
+//     if (number % i === 0) return false;
+//
+//     i = i + 1;
+//   }
+//
+//   return true;
+// };
+
 const getPrimeFactors = (number) => {
   const result = [];
+  let d = 2;
 
-  let curNum = number;
-
-  let probe = 2;
-
-  while (curNum !== 1) {
-    if (curNum % probe !== 0) {
-      probe = probe + 1;
+  while (d * d <= number) {
+    if (number % d === 0) {
+      result.push(d);
+      number = number / d;
     } else {
-      curNum = curNum / probe;
-
-      result.push(probe);
+      d = d + 1;
     }
+  }
+
+  if (number > 1) {
+    result.push(number);
   }
 
   return result;
