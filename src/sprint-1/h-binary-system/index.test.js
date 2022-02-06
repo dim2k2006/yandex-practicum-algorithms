@@ -19,3 +19,7 @@ test('Returns 10.', () => {
 test('Returns 10.', () => {
   expect(getBinarySum(10, 0)).toBe(10);
 });
+
+test('Returns 11010101.', () => {
+  expect(getBinarySum(11001, 10111100)).toBe(11010101);
+});

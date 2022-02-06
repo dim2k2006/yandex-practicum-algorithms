@@ -1,9 +1,17 @@
 const getSum = (number1, number2) => {
-  if (number1 === 0 && number2 === 0) return { sum: 0, storage: 0 };
+  if (number1 === 0 && number2 === 0) return 0;
 
-  if (number1 === 1 && number2 === 1) return { sum: 0, storage: 1 };
+  if (number1 === 1 && number2 === 1) return 0;
 
-  return { sum: 1, storage: 0 };
+  return 1;
+};
+
+const getStorage = (number1, number2) => {
+  if (number1 === 0 && number2 === 0) return 0;
+
+  if (number1 === 1 && number2 === 1) return 1;
+
+  return 0;
 };
 
 const getBinarySum = (binaryNumber1, binaryNumber2) => {
@@ -26,13 +34,27 @@ const getBinarySum = (binaryNumber1, binaryNumber2) => {
     const number1 = list1[i];
     const number2 = list2[i];
 
-    const value = getSum(number1, number2);
+    const preliminaryValue = getSum(number1, number2);
+    const nextStorage = getStorage(number1, number2);
 
-    const newValue = prevStorage === 1 ? getSum(value.sum, prevStorage) : value;
+    if (prevStorage === 0) {
+      result.unshift(preliminaryValue);
 
-    result.unshift(newValue.sum);
+      prevStorage = nextStorage;
 
-    prevStorage = value.storage;
+      if (i === 0) {
+        result.unshift(prevStorage);
+      }
+
+      continue;
+    }
+
+    const value = getSum(preliminaryValue, prevStorage);
+    const newStorage = getStorage(preliminaryValue, prevStorage);
+
+    result.unshift(value);
+
+    prevStorage = newStorage === 1 ? newStorage : nextStorage;
 
     if (i === 0) {
       result.unshift(prevStorage);
