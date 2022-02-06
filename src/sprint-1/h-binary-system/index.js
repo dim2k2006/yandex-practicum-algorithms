@@ -13,12 +13,18 @@ const getBinarySum = (binaryNumber1, binaryNumber2) => {
   const biggestList = numbers1.length > numbers2.length ? numbers1 : numbers2;
   const smallestList = numbers1.length > numbers2.length ? numbers2 : numbers1;
 
+  const diff = biggestList.length - smallestList.length;
+  const diffList = [...new Array(diff)].map(() => 0);
+
+  const list1 = biggestList;
+  const list2 = [...diffList, ...smallestList];
+
   const result = [];
   let prevStorage = 0;
 
-  for (let i = biggestList.length - 1; i >= 0; i = i - 1) {
-    const number1 = biggestList[i];
-    const number2 = smallestList[i];
+  for (let i = list1.length - 1; i >= 0; i = i - 1) {
+    const number1 = list1[i];
+    const number2 = list2[i];
 
     const value = getSum(number1, number2);
 
