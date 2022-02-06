@@ -35,19 +35,9 @@ module.exports = getWeather;
 // });
 //
 // const solve = () => {
-//   const matrixRowsCount = Number(_inputLines[0]);
-//   // const matrixColumnsCount = Number(_inputLines[1]);
-//   const matrix = [...new Array(matrixRowsCount)].map((value, index) => {
-//     const matrixRow = _inputLines[index + 2].split(' ').map(Number);
+//   const data = _inputLines[1].split(' ').map(Number);
 //
-//     return matrixRow;
-//   });
-//   const pointY = Number(_inputLines[_inputLines.length - 2]);
-//   const pointX = Number(_inputLines[_inputLines.length - 1]);
-//
-//   const neighbors = getNeighbors(matrix, { y: pointY, x: pointX });
-//
-//   const result = neighbors.join(' ');
+//   const result = getWeather(data);
 //
 //   console.log(result);
 // };
