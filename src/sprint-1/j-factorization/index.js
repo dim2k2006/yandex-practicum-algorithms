@@ -21,26 +21,26 @@ const getPrimeFactors = (number) => {
 module.exports = getPrimeFactors;
 
 // Yandex context required code
-// const _readline = require('readline');
-//
-// const _reader = _readline.createInterface({
-//   input: process.stdin,
-// });
-//
-// const _inputLines = [];
-//
-// _reader.on('line', (line) => {
-//   _inputLines.push(line);
-// });
-//
-// const solve = () => {
-//   const number = Number(_inputLines[0]);
-//
-//   const result = isDegreeOfFour(number);
-//
-//   const out = result ? 'True' : 'False';
-//
-//   console.log(out);
-// };
-//
-// process.stdin.on('end', solve);
+const _readline = require('readline');
+
+const _reader = _readline.createInterface({
+  input: process.stdin,
+});
+
+const _inputLines = [];
+
+_reader.on('line', (line) => {
+  _inputLines.push(line);
+});
+
+const solve = () => {
+  const number = Number(_inputLines[0]);
+
+  const result = getPrimeFactors(number);
+
+  const out = result.join(' ');
+
+  console.log(out);
+};
+
+process.stdin.on('end', solve);
