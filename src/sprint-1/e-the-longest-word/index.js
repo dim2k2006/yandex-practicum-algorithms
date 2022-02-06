@@ -29,11 +29,13 @@ module.exports = getLongestWord;
 // });
 //
 // const solve = () => {
-//   const data = _inputLines[1].split(' ').map(Number);
+//   const data = _inputLines[1];
 //
-//   const result = getWeather(data);
+//   const result = getLongestWord(data);
 //
-//   console.log(result);
+//   const out = `${result[0]}\n${result[1]}`;
+//
+//   console.log(out);
 // };
 //
 // process.stdin.on('end', solve);
