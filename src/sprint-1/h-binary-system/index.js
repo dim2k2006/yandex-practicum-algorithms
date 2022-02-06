@@ -56,9 +56,10 @@ module.exports = getBinarySum;
 // });
 //
 // const solve = () => {
-//   const decimalNumber = _inputLines[0];
+//   const binaryNumber1 = _inputLines[0];
+//   const binaryNumber2 = _inputLines[1];
 //
-//   const result = getBinaryNumber(decimalNumber);
+//   const result = getBinarySum(binaryNumber1, binaryNumber2);
 //
 //   console.log(result);
 // };
