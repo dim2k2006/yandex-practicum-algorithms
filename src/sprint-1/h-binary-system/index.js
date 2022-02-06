@@ -14,6 +14,20 @@ const getStorage = (number1, number2) => {
   return 0;
 };
 
+const clean = (numbers) => {
+  const iter = (list) => {
+    if (list.length === 0 || list.length === 1) return list;
+
+    const first = list[0];
+
+    if (first === 0) return iter(list.slice(1));
+
+    return list;
+  };
+
+  return iter(numbers);
+};
+
 const getBinarySum = (binaryNumber1, binaryNumber2) => {
   const numbers1 = String(binaryNumber1).split('').map(Number);
   const numbers2 = String(binaryNumber2).split('').map(Number);
@@ -61,7 +75,11 @@ const getBinarySum = (binaryNumber1, binaryNumber2) => {
     }
   }
 
-  return result.join('').replace(/^0+/, '');
+  console.log('result', result);
+
+  const newResult = clean(result);
+
+  return newResult.join('');
 };
 
 module.exports = getBinarySum;
