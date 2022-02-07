@@ -37,12 +37,29 @@ const findDistance = (currentIndex, zeroIndexes) => {
   return distances[0];
 };
 
-const getNearestZero = (data) => {
-  const zeroIndexes = data.reduce((accumulator, item, index) => {
+// const getZeroIndexes = (data) => {
+//   const indices = [];
+//   const element = 0;
+//
+//   let idx = data.indexOf(element);
+//   while (idx !== -1) {
+//     indices.push(idx);
+//     idx = data.indexOf(element, idx + 1);
+//   }
+//
+//   return indices;
+// };
+
+const getZeroIndexes = (data) => {
+  return data.reduce((accumulator, item, index) => {
     if (item !== 0) return accumulator;
 
     return [...accumulator, index];
   }, []);
+};
+
+const getNearestZero = (data) => {
+  const zeroIndexes = getZeroIndexes(data);
 
   const result = data.map((number, index) => {
     if (number === 0) return 0;
