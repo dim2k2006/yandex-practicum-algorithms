@@ -31,3 +31,7 @@ test('Returns [0, 1, 0].', () => {
 test('Returns [0, 0, 1].', () => {
   expect(getNearestZero([0, 0, 5])).toEqual([0, 0, 1]);
 });
+
+test('Returns [1, 0, 0].', () => {
+  expect(getNearestZero([5, 0, 0])).toEqual([1, 0, 0]);
+});
