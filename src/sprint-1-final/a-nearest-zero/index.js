@@ -1,29 +1,80 @@
-const findDistance = (currentIndex, zeroIndexes) => {
-  const distances = zeroIndexes
-    .map((index) => Math.abs(currentIndex - index))
-    .sort((a, b) => a - b);
+// const findDistance = (currentIndex, zeroIndexes) => {
+//   const distances = zeroIndexes
+//     .map((index) => Math.abs(currentIndex - index))
+//     .sort((a, b) => a - b);
+//
+//   return distances[0];
+// };
+//
+// const getZeroIndexes = (data) => {
+//   return data.reduce((accumulator, item, index) => {
+//     if (item !== 0) return accumulator;
+//
+//     return [...accumulator, index];
+//   }, []);
+// };
 
-  return distances[0];
+// const getNearestZero = (data) => {
+//   const zeroIndexes = getZeroIndexes(data);
+//
+//   const result = data.map((number, index) => {
+//     if (number === 0) return 0;
+//
+//     const distance = findDistance(index, zeroIndexes);
+//
+//     return distance;
+//   });
+//
+//   return result;
+// };
+
+const isInt = (n) => {
+  return n % 1 === 0;
 };
 
-const getZeroIndexes = (data) => {
-  return data.reduce((accumulator, item, index) => {
-    if (item !== 0) return accumulator;
+const getDistance = (inflectionPoint, currentDistance, i) => {
+  if (isInt(inflectionPoint)) {
+    const isInflectionPointReached = i > inflectionPoint;
 
-    return [...accumulator, index];
-  }, []);
+    const result = isInflectionPointReached ? currentDistance - 1 : currentDistance + 1;
+
+    return result;
+  }
+
+  const isInflectionPointReached = i > inflectionPoint;
+
+  if (isInflectionPointReached && i - inflectionPoint < 1) return currentDistance;
+
+  const result = isInflectionPointReached ? currentDistance - 1 : currentDistance + 1;
+
+  return result;
 };
 
 const getNearestZero = (data) => {
-  const zeroIndexes = getZeroIndexes(data);
+  const result = [];
+  let inflectionPoint = null;
+  let distance = 0;
 
-  const result = data.map((number, index) => {
-    if (number === 0) return 0;
+  for (let i = 0; i < data.length; i = i + 1) {
+    const value = data[i];
 
-    const distance = findDistance(index, zeroIndexes);
+    if (value === 0) {
+      result.push(value);
 
-    return distance;
-  });
+      const nextZeroIndex = data.indexOf(0, i + 1);
+
+      inflectionPoint =
+        nextZeroIndex > 0 ? i + (nextZeroIndex - i) / 2 : Number.MAX_SAFE_INTEGER;
+
+      distance = 0;
+
+      continue;
+    }
+
+    distance = getDistance(inflectionPoint, distance, i);
+
+    result.push(distance);
+  }
 
   return result;
 };
