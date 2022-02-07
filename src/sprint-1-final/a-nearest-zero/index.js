@@ -1,34 +1,3 @@
-// const findDistance = (data) => {
-//   if (!data.includes(0)) return Number.MAX_SAFE_INTEGER;
-//
-//   const index = data.findIndex((item) => item === 0);
-//
-//   return index + 1;
-// };
-
-// const findDistance = (data, currentIndex) => {
-//   let leftPointer = currentIndex;
-//   let rightPointer = currentIndex;
-//   let i = 0;
-//   let result = 0;
-//
-//   while (i < data.length) {
-//     const leftValue = data[leftPointer];
-//     const rightValue = data[rightPointer];
-//
-//     if (leftValue === 0) return currentIndex - leftPointer;
-//
-//     if (rightValue === 0) return rightPointer - currentIndex;
-//
-//     leftPointer = Math.max(0, leftPointer - 1);
-//     rightPointer = Math.min(rightPointer + 1, data.length - 1);
-//
-//     i = i + 1;
-//   }
-//
-//   return result;
-// };
-
 const findDistance = (currentIndex, zeroIndexes) => {
   const distances = zeroIndexes
     .map((index) => Math.abs(currentIndex - index))
@@ -36,19 +5,6 @@ const findDistance = (currentIndex, zeroIndexes) => {
 
   return distances[0];
 };
-
-// const getZeroIndexes = (data) => {
-//   const indices = [];
-//   const element = 0;
-//
-//   let idx = data.indexOf(element);
-//   while (idx !== -1) {
-//     indices.push(idx);
-//     idx = data.indexOf(element, idx + 1);
-//   }
-//
-//   return indices;
-// };
 
 const getZeroIndexes = (data) => {
   return data.reduce((accumulator, item, index) => {
