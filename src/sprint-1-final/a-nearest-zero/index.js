@@ -1,22 +1,39 @@
-const findDistance = (data) => {
-  if (!data.includes(0)) return Number.MAX_SAFE_INTEGER;
+// const findDistance = (data) => {
+//   if (!data.includes(0)) return Number.MAX_SAFE_INTEGER;
+//
+//   const index = data.findIndex((item) => item === 0);
+//
+//   return index + 1;
+// };
 
-  const index = data.findIndex((item) => item === 0);
+const findDistance = (data, currentIndex) => {
+  let leftPointer = currentIndex;
+  let rightPointer = currentIndex;
+  let i = 0;
+  let result = 0;
 
-  return index + 1;
+  while (i < data.length) {
+    const leftValue = data[leftPointer];
+    const rightValue = data[rightPointer];
+
+    if (leftValue === 0) return currentIndex - leftPointer;
+
+    if (rightValue === 0) return rightPointer - currentIndex;
+
+    leftPointer = Math.max(0, leftPointer - 1);
+    rightPointer = Math.min(rightPointer + 1, data.length - 1);
+
+    i = i + 1;
+  }
+
+  return result;
 };
 
 const getNearestZero = (data) => {
   const result = data.map((number, index) => {
     if (number === 0) return 0;
 
-    const leftChunk = data.slice(0, index);
-    const rightChunk = data.slice(index + 1);
-
-    const leftDistance = findDistance([...leftChunk].reverse());
-    const rightDistance = findDistance(rightChunk);
-
-    const distance = Math.min(leftDistance, rightDistance);
+    const distance = findDistance(data, index);
 
     return distance;
   });
@@ -40,10 +57,9 @@ module.exports = getNearestZero;
 // });
 //
 // const solve = () => {
-//   const string1 = _inputLines[0];
-//   const string2 = _inputLines[1];
+//   const data = _inputLines[1].split(' ').map(Number);
 //
-//   const result = getExtraLetter(string1, string2);
+//   const result = getNearestZero(data).join(' ');
 //
 //   console.log(result);
 // };
