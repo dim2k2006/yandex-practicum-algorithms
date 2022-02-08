@@ -50,10 +50,21 @@ const getDistance = (inflectionPoint, currentDistance, i) => {
   return result;
 };
 
+const getNextInflationPoint = (data, index) => {
+  const nextZeroIndex = data.indexOf(0, index + 1);
+
+  const inflectionPoint =
+    nextZeroIndex > 0 ? index + (nextZeroIndex - index) / 2 : Number.MAX_SAFE_INTEGER;
+
+  return inflectionPoint;
+};
+
 const getNearestZero = (data) => {
   const result = [];
-  let inflectionPoint = null;
-  let distance = 0;
+  let inflectionPoint = data.indexOf(0);
+  let distance = inflectionPoint;
+
+  console.log('distance:', distance);
 
   for (let i = 0; i < data.length; i = i + 1) {
     const value = data[i];
@@ -61,10 +72,7 @@ const getNearestZero = (data) => {
     if (value === 0) {
       result.push(value);
 
-      const nextZeroIndex = data.indexOf(0, i + 1);
-
-      inflectionPoint =
-        nextZeroIndex > 0 ? i + (nextZeroIndex - i) / 2 : Number.MAX_SAFE_INTEGER;
+      inflectionPoint = getNextInflationPoint(data, i);
 
       distance = 0;
 
@@ -82,24 +90,24 @@ const getNearestZero = (data) => {
 module.exports = getNearestZero;
 
 // Yandex context required code
-const _readline = require('readline');
-
-const _reader = _readline.createInterface({
-  input: process.stdin,
-});
-
-const _inputLines = [];
-
-_reader.on('line', (line) => {
-  _inputLines.push(line);
-});
-
-const solve = () => {
-  const data = _inputLines[1].split(' ').map(Number);
-
-  const result = getNearestZero(data).join(' ');
-
-  console.log(result);
-};
-
-process.stdin.on('end', solve);
+// const _readline = require('readline');
+//
+// const _reader = _readline.createInterface({
+//   input: process.stdin,
+// });
+//
+// const _inputLines = [];
+//
+// _reader.on('line', (line) => {
+//   _inputLines.push(line);
+// });
+//
+// const solve = () => {
+//   const data = _inputLines[1].split(' ').map(Number);
+//
+//   const result = getNearestZero(data).join(' ');
+//
+//   console.log(result);
+// };
+//
+// process.stdin.on('end', solve);
