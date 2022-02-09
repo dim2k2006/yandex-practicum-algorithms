@@ -1,3 +1,5 @@
+// ID посылки: 65032841
+
 const getNearestZero = (data) => {
   let prevZeroIndex = null;
 
