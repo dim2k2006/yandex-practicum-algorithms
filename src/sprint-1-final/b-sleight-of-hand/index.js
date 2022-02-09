@@ -1,3 +1,5 @@
+// ID посылки: 65034432
+
 const roundsCount = 9;
 const playersCount = 2;
 
