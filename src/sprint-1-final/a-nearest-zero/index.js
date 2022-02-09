@@ -29,24 +29,24 @@ const getNearestZero = (data) => {
 module.exports = getNearestZero;
 
 // Yandex context required code
-const _readline = require('readline');
-
-const _reader = _readline.createInterface({
-  input: process.stdin,
-});
-
-const _inputLines = [];
-
-_reader.on('line', (line) => {
-  _inputLines.push(line);
-});
-
-const solve = () => {
-  const data = _inputLines[1].split(' ').map(Number);
-
-  const result = getNearestZero(data).join(' ');
-
-  console.log(result);
-};
-
-process.stdin.on('end', solve);
+// const _readline = require('readline');
+//
+// const _reader = _readline.createInterface({
+//   input: process.stdin,
+// });
+//
+// const _inputLines = [];
+//
+// _reader.on('line', (line) => {
+//   _inputLines.push(line);
+// });
+//
+// const solve = () => {
+//   const data = _inputLines[1].split(' ').map(Number);
+//
+//   const result = getNearestZero(data).join(' ');
+//
+//   console.log(result);
+// };
+//
+// process.stdin.on('end', solve);
