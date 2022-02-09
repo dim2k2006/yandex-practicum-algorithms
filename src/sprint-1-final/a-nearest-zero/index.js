@@ -1,7 +1,7 @@
 const findDistance = (data) => {
-  if (!data.includes(0)) return Number.MAX_SAFE_INTEGER;
+  const index = data.indexOf(0);
 
-  const index = data.findIndex((item) => item === 0);
+  if (index === -1) return Number.MAX_SAFE_INTEGER;
 
   return index + 1;
 };
