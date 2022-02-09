@@ -1,13 +1,5 @@
-const findDistance = (data) => {
-  const index = data.indexOf(0);
-
-  if (index === -1) return Number.MAX_SAFE_INTEGER;
-
-  return index + 1;
-};
-
 const getNearestZero = (data) => {
-  let prevZeroIndex = 0;
+  let prevZeroIndex = null;
 
   const result = data.map((number, index) => {
     if (number === 0) {
@@ -19,11 +11,9 @@ const getNearestZero = (data) => {
     const nextIndex = data.indexOf(0, index + 1);
     const nextZeroIndex = nextIndex === -1 ? Number.MAX_SAFE_INTEGER : nextIndex;
 
-    const leftChunk = data.slice(prevZeroIndex, index);
-    const rightChunk = data.slice(index + 1, nextZeroIndex + 1);
-
-    const leftDistance = findDistance([...leftChunk].reverse());
-    const rightDistance = findDistance(rightChunk);
+    const leftDistance =
+      prevZeroIndex === null ? Number.MAX_SAFE_INTEGER : index - prevZeroIndex;
+    const rightDistance = nextZeroIndex - index;
 
     const distance = Math.min(leftDistance, rightDistance);
 
