@@ -13,5 +13,10 @@ const item2 = new Node(2, item3);
 const item1 = new Node(1, item2);
 
 test('Returns [1, 2, 3, 4].', () => {
-  expect(printList(item1)).toEqual([1, 2, 3, 4]);
+  expect(printList(item1)).toBe(
+    `1
+2
+3
+4`,
+  );
 });

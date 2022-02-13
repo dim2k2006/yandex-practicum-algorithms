@@ -2,16 +2,18 @@ const printList = (node) => {
   const iter = (accumulator, nodeItem) => {
     if (!nodeItem) return accumulator;
 
-    return iter([...accumulator, nodeItem.value], nodeItem.next);
+    if (accumulator === '') return iter(`${nodeItem.value}`, nodeItem.next);
+
+    return iter(`${accumulator}\n${nodeItem.value}`, nodeItem.next);
   };
 
-  return iter([], node);
+  const result = iter('', node);
+
+  return result;
 };
 
 function solution(node) {
-  const result = printList(node).join('\n');
-
-  console.log(result);
+  console.log(printList(node));
 }
 
 module.exports = printList;
