@@ -22,9 +22,7 @@ const removeNodeByIndex = (node, idx) => {
 };
 
 function solution(node, idx) {
-  const result = removeNodeByIndex(node, idx);
-
-  console.log(result);
+  return removeNodeByIndex(node, idx);
 }
 
 module.exports = removeNodeByIndex;
