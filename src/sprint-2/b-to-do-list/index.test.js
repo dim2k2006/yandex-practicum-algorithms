@@ -1,4 +1,4 @@
-const solution = require('./');
+const printList = require('./');
 
 class Node {
   constructor(value = null, next = null) {
@@ -13,5 +13,5 @@ const item2 = new Node(2, item3);
 const item1 = new Node(1, item2);
 
 test('Returns [1, 2, 3, 4].', () => {
-  expect(solution(item1)).toEqual([1, 2, 3, 4]);
+  expect(printList(item1)).toEqual([1, 2, 3, 4]);
 });
