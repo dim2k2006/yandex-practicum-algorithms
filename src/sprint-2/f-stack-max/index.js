@@ -27,11 +27,16 @@ class StackMax {
 const executeStackCommand = (stack, commandName, ...args) => {
   const result = stack[commandName](...args);
 
-  return result;
+  if (commandName === 'get_max') {
+    console.log(result);
+  }
+
+  if (commandName === 'pop' && result === 'error') {
+    console.log(result);
+  }
 };
 
 exports.StackMax = StackMax;
-exports.executeStackCommand = executeStackCommand;
 
 // Yandex context required code
 // const _readline = require('readline');
@@ -47,12 +52,21 @@ exports.executeStackCommand = executeStackCommand;
 // });
 //
 // const solve = () => {
-//   const string1 = _inputLines[0];
-//   const string2 = _inputLines[1];
+//   const commandsCount = Number(_inputLines[0]);
+//   const commands = [...new Array(commandsCount)].map((item, index) => {
+//     const commandString = _inputLines[index + 1];
+//     const [commandName, commandValue] = commandString.split(' ');
 //
-//   const result = getExtraLetter(string1, string2);
+//     return [commandName, commandValue ? Number(commandValue) : undefined];
+//   });
 //
-//   console.log(result);
+//   const stack = new StackMax();
+//
+//   commands.forEach((commandList) => {
+//     const [commandName, commandValue] = commandList;
+//
+//     executeStackCommand(stack, commandName, commandValue);
+//   });
 // };
 //
 // process.stdin.on('end', solve);
