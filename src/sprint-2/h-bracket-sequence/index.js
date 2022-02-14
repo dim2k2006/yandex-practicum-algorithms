@@ -11,21 +11,21 @@ const isCorrectBracketSeq = (sequence) => {
         accumulator1 = accumulator1 + 1;
         break;
       case '}':
-        accumulator1 = accumulator1 - 1;
+        accumulator1 = Math.max(0, accumulator1 - 1);
         break;
 
       case '[':
         accumulator2 = accumulator2 + 1;
         break;
       case ']':
-        accumulator2 = accumulator2 - 1;
+        accumulator2 = Math.max(0, accumulator2 - 1);
         break;
 
       case '(':
         accumulator3 = accumulator3 + 1;
         break;
       case ')':
-        accumulator3 = accumulator3 - 1;
+        accumulator3 = Math.max(0, accumulator3 - 1);
         break;
     }
   });
@@ -49,21 +49,12 @@ exports.isCorrectBracketSeq = isCorrectBracketSeq;
 // });
 //
 // const solve = () => {
-//   const commandsCount = Number(_inputLines[0]);
-//   const commands = [...new Array(commandsCount)].map((item, index) => {
-//     const commandString = _inputLines[index + 1];
-//     const [commandName, commandValue] = commandString.split(' ');
+//   const sequence = _inputLines[0];
 //
-//     return [commandName, commandValue ? Number(commandValue) : undefined];
-//   });
+//   const result = isCorrectBracketSeq(sequence);
+//   const out = result ? 'True' : 'False';
 //
-//   const stack = new StackMax();
-//
-//   commands.forEach((commandList) => {
-//     const [commandName, commandValue] = commandList;
-//
-//     executeStackCommand(stack, commandName, commandValue);
-//   });
+//   console.log(out);
 // };
 //
 // process.stdin.on('end', solve);

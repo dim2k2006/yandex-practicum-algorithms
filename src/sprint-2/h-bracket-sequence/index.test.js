@@ -7,3 +7,7 @@ test('Returns true.', () => {
 test('Returns true.', () => {
   expect(isCorrectBracketSeq('()')).toBe(true);
 });
+
+test('Returns false.', () => {
+  expect(isCorrectBracketSeq(')(')).toBe(false);
+});
