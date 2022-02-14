@@ -27,3 +27,11 @@ describe('get_max command.', () => {
     expect(executeStackCommand(stack, 'get_max')).toBe(100);
   });
 });
+
+describe('pop command.', () => {
+  test('Returns error.', () => {
+    const stack = new StackMax();
+
+    expect(executeStackCommand(stack, 'pop')).toBe('error');
+  });
+});

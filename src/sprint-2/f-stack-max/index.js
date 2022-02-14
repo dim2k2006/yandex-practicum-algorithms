@@ -8,6 +8,8 @@ class StackMax {
   }
 
   pop() {
+    if (this.stack.length === 0) return 'error';
+
     return this.stack.pop();
   }
 
