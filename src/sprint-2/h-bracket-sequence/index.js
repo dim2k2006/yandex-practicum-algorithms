@@ -1,36 +1,67 @@
-const isCorrectBracketSeq = (sequence) => {
-  let accumulator1 = 0; // {}
-  let accumulator2 = 0; // []
-  let accumulator3 = 0; // ()
+class Stack {
+  constructor() {
+    this.stack = [];
+  }
 
+  push(x) {
+    this.stack.push(x);
+  }
+
+  pop() {
+    if (this.stack.length === 0) throw new Error('Can not pop empty stack.');
+
+    return this.stack.pop();
+  }
+
+  peek() {
+    return this.stack[this.stack.length - 1];
+  }
+
+  size() {
+    return this.stack.length;
+  }
+}
+
+const openingBrackets = ['{', '[', '('];
+
+const getOpeningBracket = (closingBracket) => {
+  switch (closingBracket) {
+    case '}':
+      return '{';
+    case ']':
+      return '[';
+    case ')':
+      return '(';
+  }
+};
+
+const isCorrectBracketSeq = (sequence) => {
+  const stack = new Stack();
   const chars = sequence.split('');
 
-  chars.forEach((char) => {
-    switch (char) {
-      case '{':
-        accumulator1 = accumulator1 + 1;
-        break;
-      case '}':
-        accumulator1 = Math.max(0, accumulator1 - 1);
-        break;
+  for (let i = 0; i < chars.length; i = i + 1) {
+    const char = chars[i];
 
-      case '[':
-        accumulator2 = accumulator2 + 1;
-        break;
-      case ']':
-        accumulator2 = Math.max(0, accumulator2 - 1);
-        break;
+    const isOpeningBracket = openingBrackets.includes(char);
 
-      case '(':
-        accumulator3 = accumulator3 + 1;
-        break;
-      case ')':
-        accumulator3 = Math.max(0, accumulator3 - 1);
-        break;
+    if (isOpeningBracket) {
+      stack.push(char);
+
+      continue;
     }
-  });
 
-  return accumulator1 + accumulator2 + accumulator3 === 0;
+    const closingBracket = char;
+
+    const openingBracket = getOpeningBracket(closingBracket);
+
+    const lastItem = stack.peek();
+
+    if (lastItem !== openingBracket) return false;
+
+    stack.pop();
+  }
+
+  return stack.size() === 0;
 };
 
 exports.isCorrectBracketSeq = isCorrectBracketSeq;

@@ -11,3 +11,15 @@ test('Returns true.', () => {
 test('Returns false.', () => {
   expect(isCorrectBracketSeq(')(')).toBe(false);
 });
+
+test('Returns false.', () => {
+  expect(isCorrectBracketSeq('({]})')).toBe(false);
+});
+
+test('Returns false.', () => {
+  expect(isCorrectBracketSeq('((())]')).toBe(false);
+});
+
+test('Returns false.', () => {
+  expect(isCorrectBracketSeq('([)]')).toBe(false);
+});
