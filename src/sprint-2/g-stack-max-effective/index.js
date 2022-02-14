@@ -1,26 +1,37 @@
 class StackMax {
   constructor() {
     this.stack = [];
+    this.maxs = [Number.MIN_SAFE_INTEGER];
   }
 
   push(x) {
     this.stack.push(x);
+
+    const lastMax = this.maxs[this.maxs.length - 1];
+
+    if (x >= lastMax) {
+      this.maxs.push(x);
+    }
   }
 
   pop() {
     if (this.stack.length === 0) return 'error';
 
-    return this.stack.pop();
+    const lastMax = this.maxs[this.maxs.length - 1];
+
+    const removedItem = this.stack.pop();
+
+    if (removedItem === lastMax) {
+      this.maxs.pop();
+    }
+
+    return removedItem;
   }
 
   get_max() {
     if (this.stack.length === 0) return 'None';
 
-    const result = this.stack.reduce((accumulator, item) => {
-      return Math.max(accumulator, item);
-    }, Number.MIN_SAFE_INTEGER);
-
-    return result;
+    return this.maxs[this.maxs.length - 1];
   }
 }
 
@@ -29,14 +40,43 @@ const executeStackCommand = (stack, commandName, ...args) => {
 
   if (commandName === 'get_max') {
     console.log(result);
+
+    // return result;
   }
 
   if (commandName === 'pop' && result === 'error') {
     console.log(result);
+
+    // return result;
   }
 };
 
+// const executeCommands = (stack, commands) => {
+//   const log = commands
+//     .map((commandString) => {
+//       const [commandName, commandValue] = commandString.split(' ');
+//
+//       const value = commandValue ? Number(commandValue) : undefined;
+//
+//       const prevMaxs = [...stack.maxs];
+//
+//       const commandResult = executeStackCommand(stack, commandName, value);
+//
+//       console.log('stack maxs before:', prevMaxs);
+//       console.log(
+//         `commandName: ${commandName}. commandValue: ${commandValue}. commandResult: ${commandResult}`,
+//       );
+//       console.log('stack maxs after:', stack.maxs);
+//
+//       return commandResult;
+//     })
+//     .filter((logItem) => !!logItem);
+//
+//   return log;
+// };
+
 exports.StackMax = StackMax;
+// exports.executeCommands = executeCommands;
 
 // Yandex context required code
 // const _readline = require('readline');
