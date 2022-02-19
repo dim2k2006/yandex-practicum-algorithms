@@ -34,4 +34,17 @@ describe('pop method.', () => {
 
     expect(queue.pop()).toBe('None');
   });
+
+  test('Removes and returns elements from queue.', () => {
+    const queue = new MyQueueSized(5);
+
+    queue.push(1);
+    queue.push(2);
+    queue.push(3);
+
+    const result = queue.pop();
+
+    expect(result).toBe(1);
+    expect(queue.size()).toBe(2);
+  });
 });

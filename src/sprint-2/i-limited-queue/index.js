@@ -20,7 +20,13 @@ class MyQueueSized {
   pop() {
     if (this.size() === 0) return 'None';
 
-    return undefined;
+    const result = this.queue[this.head];
+
+    this.queue[this.head] = null;
+    this.head = (this.head + 1) % this.maxSize;
+    this.sizeValue = this.sizeValue - 1;
+
+    return result;
   }
 
   peek() {
