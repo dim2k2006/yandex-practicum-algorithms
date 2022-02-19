@@ -27,26 +27,18 @@ describe('size method.', () => {
   // });
 });
 
-// describe('push method.', () => {
-//   test('Returns error if max size is exceeded.', () => {
-//     const queue = new MyQueueSized(0);
-//
-//     const result = queue.push(1);
-//
-//     expect(result).toBe('error');
-//   });
-//
-//   test('Pushes data to the queue.', () => {
-//     const queue = new MyQueueSized(5);
-//
-//     queue.push(1);
-//     queue.push(2);
-//     queue.push(3);
-//
-//     expect(queue.size()).toBe(3);
-//   });
-// });
-//
+describe('put method.', () => {
+  test('Puts data to the queue.', () => {
+    const queue = new LinkedListQueue();
+
+    queue.put(1);
+    queue.put(2);
+    queue.put(3);
+
+    expect(queue.size()).toBe(3);
+  });
+});
+
 // describe('pop method.', () => {
 //   test('Returns None if queue is empty.', () => {
 //     const queue = new MyQueueSized(5);

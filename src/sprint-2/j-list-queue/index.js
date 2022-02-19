@@ -1,7 +1,14 @@
+class Node {
+  constructor(value = null, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
+
 class LinkedListQueue {
   constructor() {
-    this.head = 0;
-    this.tail = 0;
+    this.head = null;
+    this.tail = null;
     this.sizeValue = 0;
   }
 
@@ -10,7 +17,11 @@ class LinkedListQueue {
   }
 
   put(x) {
-    return undefined;
+    const node = new Node(x, this.head);
+
+    this.head = node;
+
+    this.sizeValue = this.sizeValue + 1;
   }
 
   size() {
