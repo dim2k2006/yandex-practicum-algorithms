@@ -6,6 +6,25 @@ describe('size method.', () => {
 
     expect(queue.size()).toBe(0);
   });
+
+  test('Returns 0.', () => {
+    const queue = new MyQueueSized(5);
+
+    queue.push(1);
+    queue.push(2);
+    queue.push(3);
+
+    expect(queue.size()).toBe(3);
+
+    queue.pop();
+    queue.pop();
+
+    expect(queue.size()).toBe(1);
+
+    queue.pop();
+
+    expect(queue.size()).toBe(0);
+  });
 });
 
 describe('push method.', () => {
