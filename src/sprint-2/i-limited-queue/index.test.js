@@ -48,3 +48,25 @@ describe('pop method.', () => {
     expect(queue.size()).toBe(2);
   });
 });
+
+describe('peek method.', () => {
+  test('Prints None if queue is empty.', () => {
+    const queue = new MyQueueSized(5);
+
+    expect(queue.peek()).toBe('None');
+  });
+
+  test('Prints first queue item.', () => {
+    const queue = new MyQueueSized(5);
+
+    queue.push(1);
+    queue.push(2);
+    queue.push(3);
+
+    expect(queue.peek()).toBe(1);
+
+    queue.pop();
+
+    expect(queue.peek()).toBe(2);
+  });
+});

@@ -30,7 +30,11 @@ class MyQueueSized {
   }
 
   peek() {
-    return undefined;
+    if (this.size() === 0) return 'None';
+
+    const result = this.queue[this.head];
+
+    return result;
   }
 
   size() {
