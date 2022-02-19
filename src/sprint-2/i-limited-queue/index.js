@@ -18,6 +18,8 @@ class MyQueueSized {
   }
 
   pop() {
+    if (this.size() === 0) return 'None';
+
     return undefined;
   }
 

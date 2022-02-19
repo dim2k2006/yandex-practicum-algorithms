@@ -27,3 +27,11 @@ describe('push method.', () => {
     expect(queue.size()).toBe(3);
   });
 });
+
+describe('pop method.', () => {
+  test('Returns None if queue is empty.', () => {
+    const queue = new MyQueueSized(5);
+
+    expect(queue.pop()).toBe('None');
+  });
+});
