@@ -5,6 +5,8 @@ class MyQueueSized {
   }
 
   push(x) {
+    if (this.size() === this.maxSize) return 'error';
+
     return undefined;
   }
 
