@@ -28,9 +28,10 @@ class LinkedListQueue {
 
   put(x) {
     if (this.size() === 0) {
-      const node = new Node(x, this.tail);
+      const node = new Node(x);
 
       this.head = node;
+      this.tail = node;
 
       this.sizeValue = this.sizeValue + 1;
 

@@ -7,24 +7,24 @@ describe('size method.', () => {
     expect(queue.size()).toBe(0);
   });
 
-  // test('Returns 0.', () => {
-  //   const queue = new MyQueueSized(5);
-  //
-  //   queue.push(1);
-  //   queue.push(2);
-  //   queue.push(3);
-  //
-  //   expect(queue.size()).toBe(3);
-  //
-  //   queue.pop();
-  //   queue.pop();
-  //
-  //   expect(queue.size()).toBe(1);
-  //
-  //   queue.pop();
-  //
-  //   expect(queue.size()).toBe(0);
-  // });
+  test('Returns 0.', () => {
+    const queue = new LinkedListQueue();
+
+    queue.put(1);
+    queue.put(2);
+    queue.put(3);
+
+    expect(queue.size()).toBe(3);
+
+    queue.get();
+    queue.get();
+
+    expect(queue.size()).toBe(1);
+
+    queue.get();
+
+    expect(queue.size()).toBe(0);
+  });
 });
 
 describe('put method.', () => {
