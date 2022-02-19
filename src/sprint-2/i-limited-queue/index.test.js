@@ -21,7 +21,9 @@ describe('push method.', () => {
     const queue = new MyQueueSized(5);
 
     queue.push(1);
+    queue.push(2);
+    queue.push(3);
 
-    expect(queue.size()).toBe(1);
+    expect(queue.size()).toBe(3);
   });
 });
