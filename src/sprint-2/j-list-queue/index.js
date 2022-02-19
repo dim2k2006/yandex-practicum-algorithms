@@ -13,13 +13,39 @@ class LinkedListQueue {
   }
 
   get() {
-    return undefined;
+    if (this.size() === 0) return 'error';
+
+    const result = this.head.value;
+
+    const newHead = this.head.next;
+
+    this.head = newHead;
+
+    this.sizeValue = this.sizeValue - 1;
+
+    return result;
   }
 
   put(x) {
-    const node = new Node(x, this.head);
+    if (this.size() === 0) {
+      const node = new Node(x, this.tail);
 
-    this.head = node;
+      this.head = node;
+
+      this.sizeValue = this.sizeValue + 1;
+
+      return;
+    }
+
+    const prevTail = this.tail;
+
+    const newTail = new Node(x);
+
+    if (prevTail !== null) {
+      prevTail.next = newTail;
+    }
+
+    this.tail = newTail;
 
     this.sizeValue = this.sizeValue + 1;
   }
