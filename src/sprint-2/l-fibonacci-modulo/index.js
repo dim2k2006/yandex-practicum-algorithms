@@ -1,17 +1,21 @@
 const getFibonacci = (number) => {
-  const arr = [BigInt(0), BigInt(1)];
+  let prevPrev = BigInt(0);
+  let prev = BigInt(1);
 
-  const getValue = (i) => {
-    if (i === 0) return BigInt(1);
+  const getValue = (value) => {
+    if (value === 0n) return BigInt(1);
 
-    return arr[i];
+    return value;
   };
 
   for (let i = 2; i < number + 1; i++) {
-    arr.push(BigInt(getValue(i - 1) + getValue(i - 2)));
+    const nextValue = getValue(prev) + getValue(prevPrev);
+
+    prevPrev = prev;
+    prev = nextValue;
   }
 
-  return getValue(number);
+  return prev;
 };
 
 const getFibonacciModule = (number, digitsCount) => {
