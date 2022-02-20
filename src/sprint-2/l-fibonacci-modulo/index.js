@@ -1,11 +1,17 @@
 const getFibonacci = (number) => {
-  const arr = [1, 1];
+  const arr = [BigInt(0), BigInt(1)];
+
+  const getValue = (i) => {
+    if (i === 0) return BigInt(1);
+
+    return arr[i];
+  };
 
   for (let i = 2; i < number + 1; i++) {
-    arr.push(arr[i - 1] + arr[i - 2]);
+    arr.push(BigInt(getValue(i - 1) + getValue(i - 2)));
   }
 
-  return arr[number];
+  return getValue(number);
 };
 
 const getFibonacciModule = (number, digitsCount) => {
@@ -13,7 +19,7 @@ const getFibonacciModule = (number, digitsCount) => {
 
   if (String(fibonacci).length <= digitsCount) return fibonacci;
 
-  const result = fibonacci % Math.pow(10, digitsCount);
+  const result = fibonacci % BigInt(Math.pow(10, digitsCount));
 
   return result;
 };
@@ -39,7 +45,9 @@ exports.getFibonacci = getFibonacci;
 //
 //   const result = getFibonacciModule(number, digitsCount);
 //
-//   console.log(result);
+//   const out = String(result).replace('n', '');
+//
+//   console.log(out);
 // };
 //
 // process.stdin.on('end', solve);
