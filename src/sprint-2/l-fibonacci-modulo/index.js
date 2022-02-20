@@ -21,8 +21,6 @@ const getFibonacci = (number) => {
 const getFibonacciModule = (number, digitsCount) => {
   const fibonacci = getFibonacci(number);
 
-  if (String(fibonacci).length <= digitsCount) return fibonacci;
-
   const result = fibonacci % BigInt(Math.pow(10, digitsCount));
 
   return result;
