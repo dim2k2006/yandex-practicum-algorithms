@@ -1,33 +1,12 @@
-function memoize(func, resolver) {
-  if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
-    throw new TypeError('func should be a function.');
+const getFibonacci = (number) => {
+  const arr = [1, 1];
+
+  for (let i = 2; i < number + 1; i++) {
+    arr.push(arr[i - 1] + arr[i - 2]);
   }
-  var memoized = function () {
-    var args = arguments,
-      key = resolver ? resolver.apply(this, args) : args[0],
-      cache = memoized.cache;
 
-    if (cache.has(key)) {
-      return cache.get(key);
-    }
-    var result = func.apply(this, args);
-    memoized.cache = cache.set(key, result) || cache;
-    return result;
-  };
-  memoized.cache = new memoize.Cache();
-  return memoized;
-}
-
-// Expose `MapCache`.
-memoize.Cache = Map;
-
-const getFibonacci = memoize((number) => {
-  if (number === 0 || number === 1) return 1;
-
-  const result = getFibonacci(number - 1) + getFibonacci(number - 2);
-
-  return result;
-});
+  return arr[number];
+};
 
 const getFibonacciModule = (number, digitsCount) => {
   const fibonacci = getFibonacci(number);
@@ -40,26 +19,27 @@ const getFibonacciModule = (number, digitsCount) => {
 };
 
 exports.getFibonacciModule = getFibonacciModule;
+exports.getFibonacci = getFibonacci;
 
 // Yandex context required code
-const _readline = require('readline');
-
-const _reader = _readline.createInterface({
-  input: process.stdin,
-});
-
-const _inputLines = [];
-
-_reader.on('line', (line) => {
-  _inputLines.push(line);
-});
-
-const solve = () => {
-  const [number, digitsCount] = _inputLines[0].split(' ').map(Number);
-
-  const result = getFibonacciModule(number, digitsCount);
-
-  console.log(result);
-};
-
-process.stdin.on('end', solve);
+// const _readline = require('readline');
+//
+// const _reader = _readline.createInterface({
+//   input: process.stdin,
+// });
+//
+// const _inputLines = [];
+//
+// _reader.on('line', (line) => {
+//   _inputLines.push(line);
+// });
+//
+// const solve = () => {
+//   const [number, digitsCount] = _inputLines[0].split(' ').map(Number);
+//
+//   const result = getFibonacciModule(number, digitsCount);
+//
+//   console.log(result);
+// };
+//
+// process.stdin.on('end', solve);
