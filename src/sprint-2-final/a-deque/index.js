@@ -63,16 +63,16 @@ class Deque {
 exports.Deque = Deque;
 
 // Yandex context required code
-// const executeStackCommand = (queue, commandName, ...args) => {
-//   const result = queue[commandName](...args);
+// const executeStackCommand = (deque, commandName, ...args) => {
+//   const result = deque[commandName](...args);
 //
-//   if (commandName === 'push' && result === 'error') {
+//   if (commandName === 'push_back' && result === 'error') {
 //     console.log(result);
 //
 //     return;
 //   }
 //
-//   if (commandName === 'pop' && result === 'None') {
+//   if (commandName === 'push_front' && result === 'error') {
 //     console.log(result);
 //
 //     return;
@@ -97,7 +97,7 @@ exports.Deque = Deque;
 //
 // const solve = () => {
 //   const commandsCount = Number(_inputLines[0]);
-//   const queueMaxSize = Number(_inputLines[1]);
+//   const dequeMaxSize = Number(_inputLines[1]);
 //   const commands = [...new Array(commandsCount)].map((item, index) => {
 //     const commandString = _inputLines[index + 2];
 //     const [commandName, commandValue] = commandString.split(' ');
@@ -105,12 +105,12 @@ exports.Deque = Deque;
 //     return [commandName, commandValue ? Number(commandValue) : undefined];
 //   });
 //
-//   const queue = new MyQueueSized(queueMaxSize);
+//   const deque = new Deque(dequeMaxSize);
 //
 //   commands.forEach((commandList) => {
 //     const [commandName, commandValue] = commandList;
 //
-//     executeStackCommand(queue, commandName, commandValue);
+//     executeStackCommand(deque, commandName, commandValue);
 //   });
 // };
 //
