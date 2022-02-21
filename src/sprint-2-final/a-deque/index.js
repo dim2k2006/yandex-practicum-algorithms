@@ -1,29 +1,55 @@
 class Deque {
   constructor(maxSize) {
     this.maxSize = maxSize;
-    this.queue = [...new Array(maxSize)].map(() => null);
-    this.head = 0;
-    this.tail = 0;
+    this.data = new Map();
+    this.front = 0;
+    this.back = 1;
     this.sizeValue = 0;
   }
 
-  push_back(x) {
+  push_front(value) {
     if (this.size() === this.maxSize) return 'error';
 
-    this.queue[this.tail] = x;
-    this.tail = (this.tail + 1) % this.maxSize;
+    this.front = (this.front + 1) % this.maxSize;
+
     this.sizeValue = this.sizeValue + 1;
 
-    return undefined;
+    this.data.set(this.front, value);
   }
 
   pop_front() {
-    if (this.size() === 0) return 'None';
+    if (this.size() === 0) return 'error';
 
-    const result = this.queue[this.head];
+    const result = this.data.get(this.front);
 
-    this.queue[this.head] = null;
-    this.head = (this.head + 1) % this.maxSize;
+    this.data.delete(this.front);
+
+    this.front = (this.front || this.maxSize) - 1;
+
+    this.sizeValue = this.sizeValue - 1;
+
+    return result;
+  }
+
+  push_back(value) {
+    if (this.size() === this.maxSize) return 'error';
+
+    this.back = (this.back || this.maxSize) - 1;
+
+    this.data.set(this.back, value);
+
+    this.sizeValue = this.sizeValue + 1;
+  }
+
+  pop_back() {
+    if (this.size() === 0) return 'error';
+
+    const result = this.data.get(this.back);
+
+    this.data.delete(this.back);
+
+    this.back = (this.back + 1) % this.maxSize;
+
     this.sizeValue = this.sizeValue - 1;
 
     return result;
