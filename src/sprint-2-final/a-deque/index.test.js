@@ -27,26 +27,26 @@ describe('size method.', () => {
   });
 });
 
-// describe('push method.', () => {
-//   test('Returns error if max size is exceeded.', () => {
-//     const queue = new MyQueueSized(0);
-//
-//     const result = queue.push(1);
-//
-//     expect(result).toBe('error');
-//   });
-//
-//   test('Pushes data to the queue.', () => {
-//     const queue = new MyQueueSized(5);
-//
-//     queue.push(1);
-//     queue.push(2);
-//     queue.push(3);
-//
-//     expect(queue.size()).toBe(3);
-//   });
-// });
-//
+describe('push method.', () => {
+  test('Returns error if max size is exceeded.', () => {
+    const deque = new Deque(0);
+
+    const result = deque.push_back(1);
+
+    expect(result).toBe('error');
+  });
+
+  test('Pushes data to the queue.', () => {
+    const deque = new Deque(5);
+
+    deque.push_back(1);
+    deque.push_back(2);
+    deque.push_back(3);
+
+    expect(deque.size()).toBe(3);
+  });
+});
+
 // describe('pop method.', () => {
 //   test('Returns None if queue is empty.', () => {
 //     const queue = new MyQueueSized(5);
