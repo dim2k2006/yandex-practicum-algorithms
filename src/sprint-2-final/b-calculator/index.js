@@ -29,7 +29,7 @@ const calc = (operand1, operand2, operator) => {
     case '*':
       return operand1 * operand2;
     case '/':
-      return Math.round(operand1 / operand2);
+      return Math.floor(operand1 / operand2);
   }
 };
 
@@ -47,8 +47,8 @@ const calculate = (input) => {
       return;
     }
 
-    const operand1 = stack.pop();
     const operand2 = stack.pop();
+    const operand1 = stack.pop();
 
     const result = calc(operand1, operand2, char);
 
@@ -63,24 +63,24 @@ const calculate = (input) => {
 exports.calculate = calculate;
 
 // Yandex context required code
-// const _readline = require('readline');
-//
-// const _reader = _readline.createInterface({
-//   input: process.stdin,
-// });
-//
-// const _inputLines = [];
-//
-// _reader.on('line', (line) => {
-//   _inputLines.push(line);
-// });
-//
-// const solve = () => {
-//   const input = _inputLines[0];
-//
-//   const result = calculate(input);
-//
-//   console.log(result);
-// };
-//
-// process.stdin.on('end', solve);
+const _readline = require('readline');
+
+const _reader = _readline.createInterface({
+  input: process.stdin,
+});
+
+const _inputLines = [];
+
+_reader.on('line', (line) => {
+  _inputLines.push(line);
+});
+
+const solve = () => {
+  const input = _inputLines[0];
+
+  const result = calculate(input);
+
+  console.log(result);
+};
+
+process.stdin.on('end', solve);
