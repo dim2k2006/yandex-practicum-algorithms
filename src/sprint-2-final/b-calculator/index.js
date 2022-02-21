@@ -79,24 +79,24 @@ const calculate = (input) => {
 exports.calculate = calculate;
 
 // Yandex context required code
-const _readline = require('readline');
-
-const _reader = _readline.createInterface({
-  input: process.stdin,
-});
-
-const _inputLines = [];
-
-_reader.on('line', (line) => {
-  _inputLines.push(line);
-});
-
-const solve = () => {
-  const input = _inputLines[0];
-
-  const result = calculate(input);
-
-  console.log(result);
-};
-
-process.stdin.on('end', solve);
+// const _readline = require('readline');
+//
+// const _reader = _readline.createInterface({
+//   input: process.stdin,
+// });
+//
+// const _inputLines = [];
+//
+// _reader.on('line', (line) => {
+//   _inputLines.push(line);
+// });
+//
+// const solve = () => {
+//   const input = _inputLines[0];
+//
+//   const result = calculate(input);
+//
+//   console.log(result);
+// };
+//
+// process.stdin.on('end', solve);
