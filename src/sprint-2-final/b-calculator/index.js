@@ -63,26 +63,6 @@ const calculate = (input) => {
 exports.calculate = calculate;
 
 // Yandex context required code
-// const executeStackCommand = (deque, commandName, ...args) => {
-//   const result = deque[commandName](...args);
-//
-//   if (commandName === 'push_back' && result === 'error') {
-//     console.log(result);
-//
-//     return;
-//   }
-//
-//   if (commandName === 'push_front' && result === 'error') {
-//     console.log(result);
-//
-//     return;
-//   }
-//
-//   if (result !== undefined) {
-//     console.log(result);
-//   }
-// };
-//
 // const _readline = require('readline');
 //
 // const _reader = _readline.createInterface({
@@ -96,22 +76,11 @@ exports.calculate = calculate;
 // });
 //
 // const solve = () => {
-//   const commandsCount = Number(_inputLines[0]);
-//   const dequeMaxSize = Number(_inputLines[1]);
-//   const commands = [...new Array(commandsCount)].map((item, index) => {
-//     const commandString = _inputLines[index + 2];
-//     const [commandName, commandValue] = commandString.split(' ');
+//   const input = _inputLines[0];
 //
-//     return [commandName, commandValue ? Number(commandValue) : undefined];
-//   });
+//   const result = calculate(input);
 //
-//   const deque = new Deque(dequeMaxSize);
-//
-//   commands.forEach((commandList) => {
-//     const [commandName, commandValue] = commandList;
-//
-//     executeStackCommand(deque, commandName, commandValue);
-//   });
+//   console.log(result);
 // };
 //
 // process.stdin.on('end', solve);
