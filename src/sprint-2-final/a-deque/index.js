@@ -51,7 +51,7 @@ class Deque {
   }
 
   push_front(value) {
-    if (this.size() === this.maxSize) return 'error';
+    if (this.isFull()) return 'error';
 
     this.front = (this.front + 1) % this.maxSize;
 
@@ -61,7 +61,7 @@ class Deque {
   }
 
   pop_front() {
-    if (this.size() === 0) return 'error';
+    if (this.isEmpty()) return 'error';
 
     const result = this.data.get(this.front);
 
@@ -75,7 +75,7 @@ class Deque {
   }
 
   push_back(value) {
-    if (this.size() === this.maxSize) return 'error';
+    if (this.isFull()) return 'error';
 
     this.back = (this.back || this.maxSize) - 1;
 
@@ -85,7 +85,7 @@ class Deque {
   }
 
   pop_back() {
-    if (this.size() === 0) return 'error';
+    if (this.isEmpty()) return 'error';
 
     const result = this.data.get(this.back);
 
@@ -96,6 +96,14 @@ class Deque {
     this.sizeValue = this.sizeValue - 1;
 
     return result;
+  }
+
+  isFull() {
+    return this.size() === this.maxSize;
+  }
+
+  isEmpty() {
+    return this.size() === 0;
   }
 
   size() {
