@@ -26,12 +26,19 @@
 
  */
 
+const storage = {
+  data: {},
+  set: (key, value) => (storage.data[key] = value),
+  get: (key) => storage.data[key],
+  delete: (key) => delete storage.data[key],
+};
+
 class Deque {
   static ERROR_MESSAGE = 'error';
 
   constructor(maxSize) {
     this.maxSize = maxSize;
-    this.data = new Map();
+    this.data = storage;
     this.front = 0;
     /*
       Начальное состояние this.back должно быть равно 1, для того, чтобы можно было удалять элементы с обеих сторон.
