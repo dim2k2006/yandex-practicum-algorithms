@@ -27,6 +27,8 @@
  */
 
 class Deque {
+  static ERROR_MESSAGE = 'error';
+
   constructor(maxSize) {
     this.maxSize = maxSize;
     this.data = new Map();
@@ -51,7 +53,7 @@ class Deque {
   }
 
   push_front(value) {
-    if (this.isFull()) return 'error';
+    if (this.isFull()) return Deque.ERROR_MESSAGE;
 
     this.front = (this.front + 1) % this.maxSize;
 
@@ -61,7 +63,7 @@ class Deque {
   }
 
   pop_front() {
-    if (this.isEmpty()) return 'error';
+    if (this.isEmpty()) return Deque.ERROR_MESSAGE;
 
     const result = this.data.get(this.front);
 
@@ -75,7 +77,7 @@ class Deque {
   }
 
   push_back(value) {
-    if (this.isFull()) return 'error';
+    if (this.isFull()) return Deque.ERROR_MESSAGE;
 
     this.back = (this.back || this.maxSize) - 1;
 
@@ -85,7 +87,7 @@ class Deque {
   }
 
   pop_back() {
-    if (this.isEmpty()) return 'error';
+    if (this.isEmpty()) return Deque.ERROR_MESSAGE;
 
     const result = this.data.get(this.back);
 
