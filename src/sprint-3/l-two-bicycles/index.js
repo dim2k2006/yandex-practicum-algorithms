@@ -1,33 +1,35 @@
 const findDay = (savingsPerDay, bicycleCost) => {
-  const leftBoundary = 0;
-  const rightBoundary = savingsPerDay.length - 1;
-
-  const iter = (savings, coast, left, right, prevIndex) => {
-    if (right <= left) return -1;
-
+  const iter = (savings, coast, left, right) => {
     const mid = Math.floor((left + right) / 2);
 
-    if (savings[mid] === coast) return mid + 1;
+    console.log(`left: ${left}; right: ${right}; mid: ${mid};`);
 
-    if (savings[mid] < coast && prevIndex && savings[prevIndex] > coast)
-      return prevIndex + 1;
+    if (left >= right) return -1;
 
-    // left branch
-    if (savings[mid] > coast) {
-      return iter(savings, coast, left, mid, mid);
+    if (savings[left] === coast) return left;
+
+    if (savings[mid] === coast) {
+      if (mid === left + 1) {
+        return mid;
+      } else {
+        return iter(savings, coast, left, mid + 1);
+      }
+    } else {
+      return iter(savings, coast, mid + 1, right);
     }
-
-    // right branch
-    return iter(savings, coast, mid + 1, right, mid);
   };
 
-  return iter(savingsPerDay, bicycleCost, leftBoundary, rightBoundary, null);
+  const result = iter(savingsPerDay, bicycleCost, 0, savingsPerDay.length);
+
+  if (result < 0) return result;
+
+  return result + 1;
 };
 
 const find = (savingsPerDay, bicycleCost) => {
   const result = [
     findDay(savingsPerDay, bicycleCost),
-    findDay(savingsPerDay, bicycleCost * 2),
+    // findDay(savingsPerDay, bicycleCost * 2),
   ];
 
   return result;
