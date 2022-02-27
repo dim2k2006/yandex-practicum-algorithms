@@ -36,27 +36,27 @@ const find = (savingsPerDay, bicycleCost) => {
 exports.find = find;
 
 // Yandex context required code
-const _readline = require('readline');
-
-const _reader = _readline.createInterface({
-  input: process.stdin,
-});
-
-const _inputLines = [];
-
-_reader.on('line', (line) => {
-  _inputLines.push(line);
-});
-
-const solve = () => {
-  const savingsPerDay = _inputLines[1].split(' ').map(Number);
-  const bicycleCost = Number(_inputLines[2]);
-
-  const result = find(savingsPerDay, bicycleCost);
-
-  const out = result.join(' ');
-
-  console.log(out);
-};
-
-process.stdin.on('end', solve);
+// const _readline = require('readline');
+//
+// const _reader = _readline.createInterface({
+//   input: process.stdin,
+// });
+//
+// const _inputLines = [];
+//
+// _reader.on('line', (line) => {
+//   _inputLines.push(line);
+// });
+//
+// const solve = () => {
+//   const savingsPerDay = _inputLines[1].split(' ').map(Number);
+//   const bicycleCost = Number(_inputLines[2]);
+//
+//   const result = find(savingsPerDay, bicycleCost);
+//
+//   const out = result.join(' ');
+//
+//   console.log(out);
+// };
+//
+// process.stdin.on('end', solve);
