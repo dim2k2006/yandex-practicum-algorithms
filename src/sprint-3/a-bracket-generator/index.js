@@ -100,12 +100,11 @@ exports.genBrackets = genBrackets;
 // });
 //
 // const solve = () => {
-//   const savingsPerDay = _inputLines[1].split(' ').map(Number);
-//   const bicycleCost = Number(_inputLines[2]);
+//   const n = Number(_inputLines[0]);
 //
-//   const result = find(savingsPerDay, bicycleCost);
+//   const result = genBrackets(n);
 //
-//   const out = result.join(' ');
+//   const out = result.join('\n');
 //
 //   console.log(out);
 // };
