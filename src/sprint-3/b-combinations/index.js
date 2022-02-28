@@ -30,7 +30,8 @@ const genCombinations = (keysPressed) => {
 
       return result;
     })
-    .flat(Infinity);
+    .flat(Infinity)
+    .join(' ');
 
   return combinations;
 };
