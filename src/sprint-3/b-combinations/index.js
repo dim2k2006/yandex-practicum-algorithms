@@ -32,8 +32,6 @@ const genCombinations = (keysPressed) => {
     })
     .flat(Infinity);
 
-  console.log(combinations);
-
   return combinations;
 };
 
@@ -53,11 +51,11 @@ exports.genCombinations = genCombinations;
 // });
 //
 // const solve = () => {
-//   const n = Number(_inputLines[0]);
+//   const keys = _inputLines[0];
 //
-//   const result = genBrackets(n);
+//   const result = genCombinations(keys);
 //
-//   const out = result.join('\n');
+//   const out = result.join(' ');
 //
 //   console.log(out);
 // };
