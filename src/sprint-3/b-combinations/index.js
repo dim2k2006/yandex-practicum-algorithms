@@ -13,52 +13,76 @@ const getKeysLetters = () => {
   return keys;
 };
 
-const genCombinations = (keysPressed) => {
+const getLettersByKey = (keysLetters, key) => keysLetters.get(key);
+
+const getLettersChunks = (keysPressed) => {
   const keysLetters = getKeysLetters();
-  const lettersChunks = keysPressed
+  const letters = keysPressed
     .split('')
     .map(Number)
-    .map((key) => keysLetters.get(key))
-    .map((string) => string.split(''));
+    .map((key) => getLettersByKey(keysLetters, key));
 
-  const firstChunk = lettersChunks[0];
-  const restLetters = lettersChunks.slice(1).flat(Infinity);
+  return letters;
+};
 
-  const combinations = firstChunk
-    .map((letter) => {
-      const result = restLetters.map((restLetter) => `${letter}${restLetter}`);
+const isValidPrefix = (prefix, lettersChunks) => {
+  for (let i = 0; i < prefix.length; i = i + 1) {
+    const char = prefix[i];
+    const chunk = lettersChunks[i];
 
-      return result;
-    })
+    if (!chunk.includes(char)) return false;
+  }
+
+  return true;
+};
+
+const genCombinations = (keysPressed) => {
+  const chunks = getLettersChunks(keysPressed);
+  const letters = chunks.join('');
+  const lettersCount = keysPressed.length;
+
+  const iter = (n, prefix) => {
+    if (n === 0) {
+      const isValid = isValidPrefix(prefix, chunks);
+
+      return isValid ? prefix : null;
+    }
+
+    const result = letters.split('').map((letter) => iter(n - 1, `${prefix}${letter}`));
+
+    return [...result];
+  };
+
+  const result = iter(lettersCount, '')
     .flat(Infinity)
+    .filter((combination) => combination !== null)
+    .filter((combination, index, array) => array.indexOf(combination) === index)
     .join(' ');
 
-  return combinations;
+  return result;
 };
 
 exports.genCombinations = genCombinations;
 
 // Yandex context required code
-// const _readline = require('readline');
-//
-// const _reader = _readline.createInterface({
-//   input: process.stdin,
-// });
-//
-// const _inputLines = [];
-//
-// _reader.on('line', (line) => {
-//   _inputLines.push(line);
-// });
-//
-// const solve = () => {
-//   const keys = _inputLines[0];
-//
-//   const result = genCombinations(keys);
-//
-//   const out = result.join(' ');
-//
-//   console.log(out);
-// };
-//
-// process.stdin.on('end', solve);
+const _readline = require('readline');
+
+const _reader = _readline.createInterface({
+  input: process.stdin,
+});
+
+const _inputLines = [];
+
+_reader.on('line', (line) => {
+  _inputLines.push(line);
+});
+
+const solve = () => {
+  const keysPressed = _inputLines[0];
+
+  const result = genCombinations(keysPressed);
+
+  console.log(result);
+};
+
+process.stdin.on('end', solve);
