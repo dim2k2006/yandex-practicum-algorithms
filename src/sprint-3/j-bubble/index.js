@@ -56,11 +56,13 @@ exports.bubbleSort = bubbleSort;
 // });
 //
 // const solve = () => {
-//   const keysPressed = _inputLines[0];
+//   const numbers = _inputLines[1].split(' ').map(Number);
 //
-//   const result = genCombinations(keysPressed);
+//   const result = bubbleSort(numbers);
 //
-//   console.log(result);
+//   const out = result.map((row) => row.join(' ')).join('\n');
+//
+//   console.log(out);
 // };
 //
 // process.stdin.on('end', solve);
