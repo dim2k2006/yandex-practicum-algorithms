@@ -5,7 +5,15 @@ const genBiggestNumber = (numbers) => {
     const result = numbersList.map((number) => {
       const newUsedNumbers = [...usedNumbers, number];
 
-      const filteredNumbers = numbersList.filter((number) => !newUsedNumbers.includes(number));
+      const newNumbersList = [...numbersList];
+
+      newUsedNumbers.forEach((usedNumber) => {
+        const index = newNumbersList.indexOf(usedNumber);
+
+        newNumbersList[index] = null;
+      });
+
+      const filteredNumbers = newNumbersList.filter((number) => number !== null);
 
       const res = iter(filteredNumbers, `${prefix}${number}`, newUsedNumbers);
 
