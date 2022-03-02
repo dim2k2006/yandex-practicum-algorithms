@@ -20,17 +20,21 @@ const sort = (data) => {
   return result;
 }
 
+const getCheckSum = (list = []) => list.slice(1).reduce((accumulator, item) => accumulator - item, list[0]);
+
 const bubbleSort = (numbers) => {
   const attemptsCount = numbers.length - 1;
 
   const iter = (list, accumulator, attempt) => {
     if (attempt >= attemptsCount) return accumulator;
 
-    const [newList, isAnySortHappened] = sort(list, 0, 1);
+    const [newList] = sort(list, 0, 1);
 
-    const newAccumulator = isAnySortHappened
-      ? [...accumulator, [...newList]]
-      : accumulator;
+    const prevList = accumulator[accumulator.length - 1] || [];
+    const prevListValue = prevList.join('');
+    const newListValue = newList.join('');
+
+    const newAccumulator = prevListValue === newListValue ? accumulator : [...accumulator, [...newList]];
 
     return iter(newList, newAccumulator, attempt + 1);
   }
