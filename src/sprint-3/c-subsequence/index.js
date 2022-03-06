@@ -5,7 +5,7 @@ const isSubsequence = (string1, string2) => {
   let pointer = 0;
   let charA = string1[pointer];
 
-  for (let i = 0; i < string2Length; i = i + 1) {
+  for (let i = 0; i <= string2Length; i = i + 1) {
     if (pointer > string1Length - 1) return true;
 
     const charB = string2[i];

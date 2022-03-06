@@ -3,6 +3,8 @@ const { isSubsequence } = require('./');
 const cases = [
   ['', 'abc', true],
   ['abc', '', false],
+  ['abcd', 'abc', false],
+  ['abbc', 'amnbkkkbooc', true],
   ['abc', 'ahbgdcu', true],
   ['abcp', 'ahpc', false],
 ];
