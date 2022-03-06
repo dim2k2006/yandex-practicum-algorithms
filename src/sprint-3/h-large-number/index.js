@@ -1,36 +1,49 @@
+// const genBiggestNumber = (numbers) => {
+//   const iter = (numbersList, prefix, usedNumbers) => {
+//     if (numbersList.length === 0) return prefix;
+//
+//     const result = numbersList.map((number) => {
+//       const newUsedNumbers = [...usedNumbers, number];
+//
+//       const newNumbersList = [...numbersList];
+//
+//       newUsedNumbers.forEach((usedNumber) => {
+//         const index = newNumbersList.indexOf(usedNumber);
+//
+//         newNumbersList[index] = null;
+//       });
+//
+//       const filteredNumbers = newNumbersList.filter((number) => number !== null);
+//
+//       const res = iter(filteredNumbers, `${prefix}${number}`, newUsedNumbers);
+//
+//       return res;
+//     });
+//
+//     return result;
+//   };
+//
+//   const result = iter(numbers.split(' '), '', [])
+//     .flat(Infinity)
+//     .map(Number)
+//     .sort();
+//
+//   const last = result[result.length - 1];
+//
+//   return last;
+// };
+
+const sort = (a, b) => {
+  const number1 = Number(`${a}${b}`);
+  const number2 = Number(`${b}${a}`);
+
+  return number2 - number1;
+};
+
 const genBiggestNumber = (numbers) => {
-  const iter = (numbersList, prefix, usedNumbers) => {
-    if (numbersList.length === 0) return prefix;
+  const result = numbers.split(' ').sort(sort).join('');
 
-    const result = numbersList.map((number) => {
-      const newUsedNumbers = [...usedNumbers, number];
-
-      const newNumbersList = [...numbersList];
-
-      newUsedNumbers.forEach((usedNumber) => {
-        const index = newNumbersList.indexOf(usedNumber);
-
-        newNumbersList[index] = null;
-      });
-
-      const filteredNumbers = newNumbersList.filter((number) => number !== null);
-
-      const res = iter(filteredNumbers, `${prefix}${number}`, newUsedNumbers);
-
-      return res;
-    });
-
-    return result;
-  };
-
-  const result = iter(numbers.split(' '), '', [])
-    .flat(Infinity)
-    .map(Number)
-    .sort();
-
-  const last = result[result.length - 1];
-
-  return last;
+  return result;
 };
 
 exports.genBiggestNumber = genBiggestNumber;
@@ -49,9 +62,9 @@ exports.genBiggestNumber = genBiggestNumber;
 // });
 //
 // const solve = () => {
-//   const keysPressed = _inputLines[0];
+//   const numbers = _inputLines[1];
 //
-//   const result = genCombinations(keysPressed);
+//   const result = genBiggestNumber(numbers);
 //
 //   console.log(result);
 // };
