@@ -1,4 +1,4 @@
-const { merge, merge_sort } = require('./solution');
+const { merge, merge_sort } = require('./');
 
 test('Merges two sorted arrays.', () => {
   const list = [1, 4, 9, 2, 10, 11];
