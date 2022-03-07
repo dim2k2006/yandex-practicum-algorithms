@@ -1,5 +1,25 @@
 function merge_sort(arr, left, right) {
-  return undefined;
+  const iter = (list) => {
+    if (list.length === 1) return list;
+
+    const leftList = iter(list.slice(0, Math.ceil(list.length / 2)));
+    const rightList = iter(list.slice(Math.ceil(list.length / 2), list.length));
+
+    const resultList = [...leftList, ...rightList];
+
+    const result = merge(
+      resultList,
+      0,
+      Math.ceil(resultList.length / 2),
+      resultList.length,
+    );
+
+    return result;
+  };
+
+  const result = iter(arr.slice(left, right));
+
+  arr.splice(0, right - left, ...result);
 }
 
 function merge(arr, left, mid, right) {
