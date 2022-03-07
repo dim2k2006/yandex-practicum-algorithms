@@ -5,13 +5,11 @@ function merge_sort(arr, left, right) {
     const leftList = iter(list.slice(0, Math.ceil(list.length / 2)));
     const rightList = iter(list.slice(Math.ceil(list.length / 2), list.length));
 
-    const resultList = [...leftList, ...rightList];
-
     const result = merge(
-      resultList,
+      leftList.concat(rightList),
       0,
-      Math.ceil(resultList.length / 2),
-      resultList.length,
+      Math.ceil((leftList.length + rightList.length) / 2),
+      leftList.length + rightList.length,
     );
 
     return result;
