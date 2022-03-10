@@ -21,18 +21,18 @@ function merge_sort(arr, left, right) {
 }
 
 function merge(arr, left, mid, right) {
-  const leftList = arr.slice(left, mid);
-  const rightList = arr.slice(mid, right + 1);
+  const leftListLength = mid - left;
+  const rightListLength = right;
 
   let leftIndex = 0;
-  let rightIndex = 0;
+  let rightIndex = mid;
 
   const result = [];
   let resultIndex = 0;
 
-  while (leftIndex < leftList.length && rightIndex < rightList.length) {
-    const leftItem = leftList[leftIndex];
-    const rightItem = rightList[rightIndex];
+  while (leftIndex < leftListLength && rightIndex < rightListLength) {
+    const leftItem = arr[leftIndex];
+    const rightItem = arr[rightIndex];
 
     if (leftItem <= rightItem) {
       result[resultIndex] = leftItem;
@@ -45,14 +45,14 @@ function merge(arr, left, mid, right) {
     resultIndex = resultIndex + 1;
   }
 
-  while (leftIndex < leftList.length) {
-    result[resultIndex] = leftList[leftIndex];
+  while (leftIndex < leftListLength) {
+    result[resultIndex] = arr[leftIndex];
     leftIndex = leftIndex + 1;
     resultIndex = resultIndex + 1;
   }
 
-  while (rightIndex < rightList.length) {
-    result[resultIndex] = rightList[rightIndex];
+  while (rightIndex < rightListLength) {
+    result[resultIndex] = arr[rightIndex];
     rightIndex = rightIndex + 1;
     resultIndex = resultIndex + 1;
   }
