@@ -17,10 +17,6 @@ const findDay = (savingsPerDay, coast) => {
 
   const result = iter(savingsPerDay);
 
-  console.log('result:', result);
-
-  // if (result < 0) return result;
-
   return result;
 };
 
@@ -43,9 +39,10 @@ exports.findDay = findDay;
 //   const savingsPerDay = _inputLines[1].split(' ').map(Number);
 //   const bicycleCost = Number(_inputLines[2]);
 //
-//   const result = find(savingsPerDay, bicycleCost);
+//   const result1 = findDay(savingsPerDay, bicycleCost);
+//   const result2 = findDay(savingsPerDay, bicycleCost * 2);
 //
-//   const out = result.join(' ');
+//   const out = [result1, result2].join(' ');
 //
 //   console.log(out);
 // };
