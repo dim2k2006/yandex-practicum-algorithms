@@ -12,6 +12,10 @@ test('Returns -1.', () => {
   expect(findDay([1, 2, 4, 4, 4, 4], 10)).toBe(-1);
 });
 
+test('Returns 1.', () => {
+  expect(findDay([1, 2, 4, 4, 4, 4], 1)).toBe(1);
+});
+
 // test.only('Returns [3, 5].', () => {
 //   // expect(find([1, 2, 4, 4, 6, 8], 3)).toEqual([3, 5]);
 //   expect(find([1, 2, 4, 4, 6, 8], 3)).toEqual([3]);

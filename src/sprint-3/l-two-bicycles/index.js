@@ -2,7 +2,15 @@ const findDay = (savingsPerDay, coast) => {
   const iter = (savings, leftIndex, rightIndex) => {
     const midIndex = Math.floor((leftIndex + rightIndex) / 2);
 
-    if (rightIndex - leftIndex <= 1) return rightIndex;
+    // console.log('savings:', savings);
+    // console.log('leftIndex:', leftIndex);
+    // console.log('rightIndex:', rightIndex);
+
+    if (rightIndex - leftIndex <= 1) {
+      if (savings[leftIndex] >= coast) return leftIndex;
+
+      return rightIndex;
+    }
 
     if (savings[midIndex] >= coast) {
       return iter(savings, 0, midIndex);
