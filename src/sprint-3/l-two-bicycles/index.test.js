@@ -1,6 +1,6 @@
 const { findDay } = require('./');
 
-test.only('Returns 3.', () => {
+test('Returns 3.', () => {
   expect(findDay([1, 2, 4, 4, 6, 8, 9], 3)).toBe(3);
 });
 

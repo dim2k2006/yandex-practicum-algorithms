@@ -1,23 +1,19 @@
 const findDay = (savingsPerDay, coast) => {
-  const iter = (savings) => {
-    const leftIndex = 0;
-    const rightIndex = savings.length - 1;
+  const iter = (savings, leftIndex, rightIndex) => {
     const midIndex = Math.floor((leftIndex + rightIndex) / 2);
 
-    if (savings[leftIndex] < coast && savings[rightIndex] >= coast) return rightIndex;
-
-    if (rightIndex - leftIndex <= 1) return -1;
+    if (rightIndex - leftIndex <= 1) return rightIndex;
 
     if (savings[midIndex] >= coast) {
-      return iter(savings.slice(0, midIndex));
+      return iter(savings, 0, midIndex);
     }
 
-    return iter(savings.slice(midIndex, rightIndex));
+    return iter(savings, midIndex, rightIndex);
   };
 
-  const result = iter(savingsPerDay);
+  const result = iter(savingsPerDay, 0, savingsPerDay.length - 1);
 
-  return result;
+  return result + 1;
 };
 
 exports.findDay = findDay;
