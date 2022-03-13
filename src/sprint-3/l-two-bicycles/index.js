@@ -1,41 +1,30 @@
-const findDay = (savingsPerDay, bicycleCost) => {
-  const iter = (savings, coast, left, right) => {
-    const mid = Math.floor((left + right) / 2);
+const findDay = (savingsPerDay, coast) => {
+  const iter = (savings) => {
+    const leftIndex = 0;
+    const rightIndex = savings.length - 1;
+    const midIndex = Math.floor((leftIndex + rightIndex) / 2);
 
-    console.log(`left: ${left}; right: ${right}; mid: ${mid};`);
+    if (savings[leftIndex] < coast && savings[rightIndex] >= coast) return rightIndex;
 
-    if (left >= right) return -1;
+    if (rightIndex - leftIndex <= 1) return -1;
 
-    if (savings[left] === coast) return left;
-
-    if (savings[mid] === coast) {
-      if (mid === left + 1) {
-        return mid;
-      } else {
-        return iter(savings, coast, left, mid + 1);
-      }
-    } else {
-      return iter(savings, coast, mid + 1, right);
+    if (savings[midIndex] >= coast) {
+      return iter(savings.slice(0, midIndex));
     }
+
+    return iter(savings.slice(midIndex, rightIndex));
   };
 
-  const result = iter(savingsPerDay, bicycleCost, 0, savingsPerDay.length);
+  const result = iter(savingsPerDay);
 
-  if (result < 0) return result;
+  console.log('result:', result);
 
-  return result + 1;
-};
-
-const find = (savingsPerDay, bicycleCost) => {
-  const result = [
-    findDay(savingsPerDay, bicycleCost),
-    // findDay(savingsPerDay, bicycleCost * 2),
-  ];
+  // if (result < 0) return result;
 
   return result;
 };
 
-exports.find = find;
+exports.findDay = findDay;
 
 // Yandex context required code
 // const _readline = require('readline');
