@@ -11,9 +11,11 @@ const findDay = (savingsPerDay, coast) => {
     return iter(savings, midIndex, rightIndex);
   };
 
-  const result = iter(savingsPerDay, 0, savingsPerDay.length - 1);
+  const index = iter(savingsPerDay, 0, savingsPerDay.length - 1);
 
-  return result + 1;
+  if (savingsPerDay[index] >= coast) return index + 1;
+
+  return -1;
 };
 
 exports.findDay = findDay;
