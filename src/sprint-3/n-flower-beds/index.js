@@ -26,10 +26,6 @@ const getBorders = (coords) => {
 
     if (accumulator.length === 0) return iter(list.slice(1), [...accumulator, first]);
 
-    // const filteredAccumulator = accumulator.filter(
-    //   (item) => !(item[0] >= first[0] && item[1] <= first[1]),
-    // );
-
     let isItemUsed = false;
 
     const newAccumulator = accumulator.map((item) => {
