@@ -1,66 +1,63 @@
-// const isPairExistsInAccumulator = (pair, accumulator) => {
-//   const result = accumulator.find((item) => item[0] >= pair[0] && item[1] <= pair[1]);
-//
-//   return result;
-// };
-//
-// const getBorders = (coords) => {
-//   const iter = (list, accumulator) => {
-//     console.log('list:', list);
-//     console.log('accumulator:', accumulator);
-//
-//     if (list.length === 0) return accumulator;
-//
-//     const pair = list[0];
-//
-//     if (accumulator.length === 0) return iter(list.slice(1), [pair]);
-//
-//     // const isExistsInAccumulator = isPairExistsInAccumulator(pair, accumulator);
-//     //
-//     // if (isExistsInAccumulator) return iter(list.slice(1), accumulator);
-//
-//     const newAccumulator = accumulator.map((item) => {
-//       if (pair[0] <= item[0] && pair[1] >= item[1]) {
-//         return pair;
-//       }
-//
-//       return item;
-//     });
-//
-//     return iter(list.slice(1), newAccumulator);
-//   };
-//
-//   const result = iter(coords, []);
-//
-//   console.log('result:', result);
-//
-//   return result;
-// };
+const getUniqCoords = (coords) => {
+  const coordsMap = new Map();
+
+  coords.forEach((item) => coordsMap.set(item.join(''), item));
+
+  let uniqCoords = [];
+
+  for (const [, value] of coordsMap) {
+    uniqCoords.push(value);
+  }
+
+  return uniqCoords;
+};
 
 const getBorders = (coords) => {
-  const uniqueCoords = new Map();
+  const uniqCoords = getUniqCoords(coords);
 
-  coords.forEach((item) => uniqueCoords.set(item.join(''), item));
+  const sortedCoords = uniqCoords.sort((a, b) => a[1] - b[1]);
 
-  const iterator = uniqueCoords.values();
+  console.log('sortedCoords:', sortedCoords);
 
   const iter = (list, accumulator) => {
-    const listItem = list.next().value;
+    if (list.length === 0) return accumulator;
 
-    if (listItem === undefined) return accumulator;
+    const first = list[0];
 
-    if (accumulator.length === 0) return iter(list, [...accumulator, listItem]);
+    if (accumulator.length === 0) return iter(list.slice(1), [...accumulator, first]);
 
-    const filteredAccumulator = accumulator.filter(
-      (item) => !(item[0] >= listItem[0] && item[1] <= listItem[1]),
-    );
+    // const filteredAccumulator = accumulator.filter(
+    //   (item) => !(item[0] >= first[0] && item[1] <= first[1]),
+    // );
 
-    const newAccumulator = [...filteredAccumulator, listItem];
+    let isItemUsed = false;
 
-    return iter(list, newAccumulator);
+    const newAccumulator = accumulator.map((item) => {
+      if (item[0] >= first[0] && item[1] <= first[1]) {
+        isItemUsed = true;
+
+        return first;
+      }
+
+      if (item[1] >= first[0] && item[0] < first[1]) {
+        isItemUsed = true;
+
+        return [item[0], first[1]];
+      }
+
+      return item;
+    });
+
+    const nextAccumulator = isItemUsed ? [...newAccumulator] : [...newAccumulator, first];
+
+    return iter(list.slice(1), nextAccumulator);
   };
 
-  return iter(iterator, []);
+  const result = iter(sortedCoords, []);
+
+  const uniqResult = getUniqCoords(result);
+
+  return uniqResult;
 };
 
 exports.getBorders = getBorders;
