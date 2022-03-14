@@ -70,7 +70,7 @@ exports.getBorders = getBorders;
 // });
 //
 // const solve = () => {
-//   const rowsCount = _inputLines[0];
+//   const rowsCount = Number(_inputLines[0]);
 //   const coords = [...new Array(rowsCount)].map((_, index) => {
 //     const data = _inputLines[index + 1].split(' ').map(Number);
 //
