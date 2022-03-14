@@ -17,8 +17,6 @@ const getBorders = (coords) => {
 
   const sortedCoords = uniqCoords.sort((a, b) => a[1] - b[1]);
 
-  console.log('sortedCoords:', sortedCoords);
-
   const iter = (list, accumulator) => {
     if (list.length === 0) return accumulator;
 
@@ -72,11 +70,18 @@ exports.getBorders = getBorders;
 // });
 //
 // const solve = () => {
-//   const numbers = _inputLines[1];
+//   const rowsCount = _inputLines[0];
+//   const coords = [...new Array(rowsCount)].map((_, index) => {
+//     const data = _inputLines[index + 1].split(' ').map(Number);
 //
-//   const result = genBiggestNumber(numbers);
+//     return data;
+//   });
 //
-//   console.log(result);
+//   const result = getBorders(coords);
+//
+//   const out = result.map((item) => item.join(' ')).join('\n');
+//
+//   console.log(out);
 // };
 //
 // process.stdin.on('end', solve);
