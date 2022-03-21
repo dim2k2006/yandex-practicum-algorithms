@@ -1,4 +1,4 @@
-const getUniqCoords = (coords) => {
+const getUniqSegments = (coords) => {
   const coordsMap = new Map();
 
   coords.forEach((item) => coordsMap.set(item.join(''), item));
@@ -12,44 +12,62 @@ const getUniqCoords = (coords) => {
   return uniqCoords;
 };
 
-const getBorders = (coords) => {
-  const uniqCoords = getUniqCoords(coords);
+const composeBorders = (segments, newSegment) => {
+  const [begin2, end2] = newSegment;
 
-  const sortedCoords = uniqCoords.sort((a, b) => a[1] - b[1]);
+  const iter = (list) => {
+    const [begin1, end1] = list[list.length - 1];
+
+    if (begin1 > begin2 && end2 > end1) {
+      if (list.length === 1) return [newSegment];
+
+      return iter(list.slice(0, list.length - 1));
+    }
+
+    if (end1 >= begin2) {
+      const newList = [...list.slice(0, list.length - 1), [begin1, end2]];
+
+      return newList;
+    }
+
+    if (begin1 >= begin2) {
+      const newList = [...list.slice(0, list.length - 1), [begin2, end2]];
+
+      return newList;
+    }
+
+    const newList = [...list, newSegment];
+
+    return newList;
+  };
+
+  return iter(segments);
+};
+
+const getBorders = (segments) => {
+  const uniqSegments = getUniqSegments(segments);
+
+  const sortedSegments = uniqSegments.sort((a, b) => a[1] - b[1]);
 
   // console.log('sortedCoords:', sortedCoords);
 
-  const result = [];
+  let result = [];
 
-  for (let i = 0; i < sortedCoords.length; i = i + 1) {
+  for (let i = 0; i < sortedSegments.length; i = i + 1) {
     if (result.length === 0) {
-      result.push(sortedCoords[i]);
+      result.push(sortedSegments[i]);
 
       continue;
     }
 
-    const [begin1, end1] = result[result.length - 1];
-    const [begin2, end2] = sortedCoords[i];
+    // const [begin1, end1] = result[result.length - 1];
+    const [begin2, end2] = sortedSegments[i];
 
     // console.log('result:', result);
     // console.log(`[${begin1}, ${end1}]`);
     // console.log(`[${begin2}, ${end2}]`);
 
-    if (end1 >= begin2) {
-      result.pop();
-
-      result.push([begin1, end2]);
-    }
-
-    if (begin1 >= begin2) {
-      result.pop();
-
-      result.push([begin2, end2]);
-    }
-
-    if (end1 < begin2) {
-      result.push([begin2, end2]);
-    }
+    result = composeBorders(result, [begin2, end2]);
   }
 
   // console.log('result:', result);
