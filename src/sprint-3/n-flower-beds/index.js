@@ -1,17 +1,3 @@
-const getUniqSegments = (coords) => {
-  const coordsMap = new Map();
-
-  coords.forEach((item) => coordsMap.set(item.join(''), item));
-
-  let uniqCoords = [];
-
-  for (const [, value] of coordsMap) {
-    uniqCoords.push(value);
-  }
-
-  return uniqCoords;
-};
-
 const composeBorders = (segments, newSegment) => {
   const [begin2, end2] = newSegment;
 
@@ -45,9 +31,7 @@ const composeBorders = (segments, newSegment) => {
 };
 
 const getBorders = (segments) => {
-  const uniqSegments = getUniqSegments(segments);
-
-  const sortedSegments = uniqSegments.sort((a, b) => a[1] - b[1]);
+  const sortedSegments = segments.sort((a, b) => a[1] - b[1]);
 
   // console.log('sortedCoords:', sortedCoords);
 
